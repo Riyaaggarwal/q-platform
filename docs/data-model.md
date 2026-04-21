@@ -62,6 +62,49 @@ A versioned change to model, dataset, solver plan, or report content.
 - changed_files
 - created_at
 
+## Circuit Artifact
+
+A versioned quantum circuit inside a Q-Repo.
+
+- id
+- repo_id
+- commit_sha
+- name
+- representation
+- qubit_count
+- gate_count
+- depth
+- parameter_count
+- target_backends
+- source_uri
+- transpiled_artifacts_uri
+
+## Pipeline
+
+A reusable experiment workflow, such as optimization benchmarking or anomaly detection.
+
+- id
+- repo_id
+- name
+- pipeline_type
+- input_schema
+- stages
+- required_checks
+- owner
+
+## Anomaly Detector
+
+A detector configuration for quantum and classical anomaly workflows.
+
+- id
+- pipeline_id
+- detector_type
+- encoding_strategy
+- feature_map
+- baseline_methods
+- metrics
+- threshold_policy
+
 ## Dataset
 
 Versioned data used by one or more experiments.
@@ -133,6 +176,9 @@ A solver run represented as a required check on a branch or review.
 - status
 - required
 - summary
+- logs_uri
+- artifacts_uri
+- budget_estimate
 
 ## Metrics
 

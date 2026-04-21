@@ -498,6 +498,10 @@ h3 {
   grid-column: span 8;
 }
 
+.span-12 {
+  grid-column: span 12;
+}
+
 .section-heading {
   display: flex;
   gap: 12px;
@@ -618,6 +622,7 @@ h3 {
 }
 
 .model-canvas,
+.circuit-canvas,
 .chart-wrap {
   width: 100%;
   min-height: 280px;
@@ -650,6 +655,53 @@ canvas {
   accent-color: var(--teal-dark);
 }
 
+.circuit-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 16px;
+}
+
+.circuit-controls,
+.detector-list {
+  display: grid;
+  gap: 10px;
+}
+
+.circuit-template {
+  min-height: 92px;
+  padding: 13px;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.circuit-template.active {
+  border-color: var(--plum);
+  background: #fbf5fa;
+}
+
+.circuit-template strong,
+.circuit-template small,
+.detector-list strong,
+.detector-list p {
+  display: block;
+}
+
+.circuit-template small,
+.detector-list p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.detector-list article {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdfc;
+}
+
 select,
 .comment-form input {
   min-height: 40px;
@@ -663,6 +715,50 @@ select,
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
+}
+
+.ci-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.ci-card {
+  min-height: 112px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdfc;
+}
+
+.ci-card::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin-bottom: 14px;
+  border-radius: 50%;
+}
+
+.ci-card.passing::before {
+  background: var(--green);
+  box-shadow: 0 0 0 4px rgba(46, 141, 99, 0.14);
+}
+
+.ci-card.warning::before {
+  background: var(--gold);
+  box-shadow: 0 0 0 4px rgba(215, 149, 29, 0.16);
+}
+
+.ci-card strong,
+.ci-card small {
+  display: block;
+}
+
+.ci-card small {
+  margin-top: 7px;
+  color: var(--muted);
+  line-height: 1.4;
 }
 
 .backend-grid article {
@@ -814,11 +910,12 @@ select,
   }
 
   .nav-list {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .pipeline,
   .repo-flow,
+  .ci-grid,
   .backend-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -835,7 +932,8 @@ select,
   .span-5,
   .span-6,
   .span-7,
-  .span-8 {
+  .span-8,
+  .span-12 {
     grid-column: span 12;
   }
 }
@@ -860,6 +958,8 @@ select,
   .pipeline,
   .repo-flow,
   .backend-grid,
+  .circuit-layout,
+  .ci-grid,
   .builder-layout,
   .provenance,
   .comment-form {

@@ -16,10 +16,13 @@ API Gateway
 
 Core Platform
   Workspace Service
+  Q-Repo Service
   Experiment Service
+  Circuit Registry
   Model Registry
   Dataset Registry
   Provenance Engine
+  CI/CD Check Engine
   Benchmark Engine
   Solver Orchestrator
   Report Builder
@@ -30,6 +33,7 @@ Solver Layer
   AWS Braket
   D-Wave / Annealing
   PennyLane
+  OpenQASM Import/Export
   Custom Backend Adapters
   Future: SNN / Neuromorphic Solvers
 
@@ -93,3 +97,38 @@ Each solver adapter should expose:
 
 This lets the product compare Qiskit, Braket, D-Wave, local heuristics, and future SNN
 solvers without redesigning the user experience.
+
+## CI/CD Check Engine
+
+Q-Checks are the product equivalent of GitHub Actions for scientific workflows.
+
+Checks should run on every branch commit and review:
+
+- model compile,
+- dataset validation,
+- circuit lint,
+- simulator smoke test,
+- hardware compatibility,
+- budget approval,
+- baseline comparison,
+- reproducibility capture,
+- report readiness.
+
+Each check writes structured status, logs, artifacts, metrics, and reviewer-facing
+summaries back to the Q-Repo.
+
+## Circuit Registry
+
+The circuit registry stores quantum circuits as versioned repo artifacts.
+
+Supported representations should include:
+
+- visual graph model for the UI,
+- OpenQASM for portability,
+- Qiskit circuit import/export,
+- Braket circuit import/export,
+- PennyLane template import/export,
+- backend-specific transpilation artifacts.
+
+This registry is also where gate depth, qubit count, backend support, noise assumptions,
+and hardware cost estimates should live.

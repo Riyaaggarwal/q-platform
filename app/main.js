@@ -68,6 +68,24 @@ const baseRuns = [
   { id: "annealing", run: "Annealing search", backend: "Hybrid adapter", quality: 93, runtime: 76, cost: 16, status: "Complete" }
 ];
 
+const circuits = {
+  qaoa: {
+    badge: "12 qubits",
+    gates: ["H", "RZ", "CX", "RZZ", "RX", "MEASURE"],
+    summary: "QAOA ansatz committed for optimization checks."
+  },
+  kernel: {
+    badge: "8 qubits",
+    gates: ["H", "RY", "RZ", "ZZFeatureMap", "CX", "MEASURE"],
+    summary: "Quantum kernel feature map committed for anomaly detection."
+  },
+  vqe: {
+    badge: "10 qubits",
+    gates: ["RY", "RZ", "CX", "RY", "CX", "MEASURE"],
+    summary: "VQE trial state committed for simulator smoke tests."
+  }
+};
+
 const comments = [
   ["Riya", "PR #14 needs repeatability checks before we merge this into the decision report."],
   ["Maya", "Please add the stronger local-search baseline as a required check."],
@@ -126,10 +144,12 @@ let activeTemplate = "energy";
 let activeView = "workspace";
 let activeWorkspace = "energy";
 let activeBranch = "main";
+let activeCircuit = "qaoa";
 let selectedMetric = "quality";
 let selectedSolvers = new Set(baseRuns.map((run) => run.id));
 
 const modelCanvas = document.querySelector("#modelCanvas");
+const circuitCanvas = document.querySelector("#circuitCanvas");
 const resultCanvas = document.querySelector("#resultCanvas");
 const resultRows = document.querySelector("#resultRows");
 const commentList = document.querySelector("#commentList");
@@ -174,6 +194,54 @@ function drawModel() {
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillText(label, x, y);
+  });
+}
+
+function drawCircuit() {
+  const ctx = circuitCanvas.getContext("2d");
+  const circuit = circuits[activeCircuit];
+  const lanes = activeCircuit === "kernel" ? 5 : 6;
+  ctx.clearRect(0, 0, circuitCanvas.width, circuitCanvas.height);
+  ctx.fillStyle = "#fbfdfc";
+  ctx.fillRect(0, 0, circuitCanvas.width, circuitCanvas.height);
+
+  for (let lane = 0; lane < lanes; lane += 1) {
+    const y = 62 + lane * 46;
+    ctx.strokeStyle = "#9badad";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(58, y);
+    ctx.lineTo(704, y);
+    ctx.stroke();
+    ctx.fillStyle = "#5f6f76";
+    ctx.font = "700 13px Inter, system-ui, sans-serif";
+    ctx.textAlign = "right";
+    ctx.fillText(`q${lane}`, 42, y + 4);
+  }
+
+  circuit.gates.forEach((gate, index) => {
+    const x = 105 + index * 96;
+    const y = 62 + (index % lanes) * 46;
+    drawRoundedRect(ctx, x - 27, y - 18, 54, 36, 8);
+    ctx.fillStyle = gate === "MEASURE" ? "#fff9ed" : "#ffffff";
+    ctx.fill();
+    ctx.strokeStyle = gate === "MEASURE" ? "#d7951d" : "#6d4568";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    ctx.fillStyle = gate === "MEASURE" ? "#7a4f00" : "#6d4568";
+    ctx.font = gate.length > 5 ? "700 9px Inter, system-ui, sans-serif" : "800 13px Inter, system-ui, sans-serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(gate, x, y + 1);
+
+    if (gate === "CX" || gate === "RZZ") {
+      const y2 = 62 + ((index + 1) % lanes) * 46;
+      ctx.strokeStyle = "#6d4568";
+      ctx.beginPath();
+      ctx.moveTo(x, y + 18);
+      ctx.lineTo(x, y2 - 18);
+      ctx.stroke();
+    }
   });
 }
 
@@ -296,6 +364,7 @@ function render() {
   updateStatus();
   updateView();
   drawModel();
+  drawCircuit();
   drawResults();
   renderRows();
   renderComments();
@@ -362,13 +431,28 @@ document.querySelectorAll(".nav-item").forEach((button) => {
   });
 });
 
+document.querySelectorAll(".circuit-template").forEach((button) => {
+  button.addEventListener("click", () => {
+    activeCircuit = button.dataset.circuit;
+    document.querySelectorAll(".circuit-template").forEach((item) => item.classList.remove("active"));
+    button.classList.add("active");
+    document.querySelector("#circuitBadge").textContent = circuits[activeCircuit].badge;
+    document.querySelector("#auditState").textContent = circuits[activeCircuit].summary;
+    if (activeCircuit === "kernel") {
+      document.querySelector("#statusProblem").textContent = "Quantum anomaly detection";
+      document.querySelector("#detectorBadge").textContent = "Kernel selected";
+    }
+    render();
+  });
+});
+
 document.querySelectorAll(".pipeline-step").forEach((button) => {
   button.addEventListener("click", () => {
     const viewByStep = {
       intake: "workspace",
       model: "model",
-      benchmark: "bench",
-      review: "collab",
+      benchmark: "circuit",
+      review: "bench",
       decision: "report"
     };
     activeView = viewByStep[button.dataset.step];

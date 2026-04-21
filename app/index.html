@@ -20,6 +20,7 @@
         <nav class="nav-list">
           <button class="nav-item active" data-view="workspace">Q-Repos</button>
           <button class="nav-item" data-view="model">Model files</button>
+          <button class="nav-item" data-view="circuit">Circuits</button>
           <button class="nav-item" data-view="bench">Run checks</button>
           <button class="nav-item" data-view="collab">Reviews</button>
           <button class="nav-item" data-view="report">Reports</button>
@@ -107,11 +108,11 @@
           </button>
           <button class="pipeline-step active" data-step="benchmark">
             <span>03</span>
-            <strong>Run checks</strong>
+            <strong>Build circuits</strong>
           </button>
           <button class="pipeline-step" data-step="review">
             <span>04</span>
-            <strong>Open review</strong>
+            <strong>Run CI checks</strong>
           </button>
           <button class="pipeline-step" data-step="decision">
             <span>05</span>
@@ -137,13 +138,13 @@
               </article>
               <article>
                 <span>2</span>
-                <strong>Commit experiment</strong>
-                <p>Version model files, datasets, assumptions, parameters, and solver plan.</p>
+                <strong>Commit artifacts</strong>
+                <p>Version models, circuits, datasets, assumptions, and solver plans.</p>
               </article>
               <article>
                 <span>3</span>
-                <strong>Run checks</strong>
-                <p>Classical baselines, Qiskit, Braket, annealing, and future SNN adapters run as checks.</p>
+                <strong>Run CI checks</strong>
+                <p>Lint circuits, simulate, estimate hardware cost, and compare detector metrics.</p>
               </article>
               <article>
                 <span>4</span>
@@ -220,10 +221,68 @@
 
             <div class="file-list">
               <div><span class="file-status modified">M</span><strong>model/objective.qmod</strong><small>Updated dispatch cost objective</small></div>
+              <div><span class="file-status added">A</span><strong>circuits/qaoa_ansatz.qcirc</strong><small>Parameterized circuit with depth and gate checks</small></div>
+              <div><span class="file-status added">A</span><strong>pipelines/anomaly_detection.yaml</strong><small>Quantum kernel anomaly workflow</small></div>
               <div><span class="file-status added">A</span><strong>datasets/grid-load-v3.csv</strong><small>New load forecast sample</small></div>
               <div><span class="file-status modified">M</span><strong>solvers/qiskit-runtime.yaml</strong><small>Adjusted QAOA depth and shots</small></div>
               <div><span class="file-status added">A</span><strong>runs/hybrid-anneal-024.json</strong><small>Captured solver artifacts and metrics</small></div>
               <div><span class="file-status modified">M</span><strong>reports/decision.md</strong><small>Evidence summary waiting for review</small></div>
+            </div>
+          </section>
+
+          <section class="workspace-panel span-7" data-panel="workspace circuit model">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Circuit Studio</p>
+                <h2>Quantum circuit as a repo artifact</h2>
+              </div>
+              <span class="badge" id="circuitBadge">12 qubits</span>
+            </div>
+
+            <div class="circuit-layout">
+              <div class="circuit-controls">
+                <button class="circuit-template active" data-circuit="qaoa">
+                  <strong>QAOA ansatz</strong>
+                  <small>Optimization circuit for QUBO and Ising formulations.</small>
+                </button>
+                <button class="circuit-template" data-circuit="kernel">
+                  <strong>Quantum kernel</strong>
+                  <small>Feature-map circuit for anomaly detection and classification.</small>
+                </button>
+                <button class="circuit-template" data-circuit="vqe">
+                  <strong>VQE trial state</strong>
+                  <small>Parameterized circuit for simulation and chemistry-style studies.</small>
+                </button>
+              </div>
+
+              <div class="circuit-canvas" aria-label="Quantum circuit preview">
+                <canvas id="circuitCanvas" width="760" height="360"></canvas>
+              </div>
+            </div>
+          </section>
+
+          <section class="workspace-panel span-5" data-panel="workspace circuit bench">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Quantum anomaly detection</p>
+                <h2>Detector pipeline</h2>
+              </div>
+              <span class="badge live" id="detectorBadge">Validated</span>
+            </div>
+
+            <div class="detector-list">
+              <article>
+                <strong>1. Encode signals</strong>
+                <p>Scale telemetry, load data, or transactions into amplitude, angle, or kernel features.</p>
+              </article>
+              <article>
+                <strong>2. Run quantum view</strong>
+                <p>Use quantum kernels, variational classifiers, annealing, or distance estimation.</p>
+              </article>
+              <article>
+                <strong>3. Compare baselines</strong>
+                <p>Benchmark against isolation forest, one-class SVM, autoencoder, and rules.</p>
+              </article>
             </div>
           </section>
 
@@ -337,6 +396,27 @@
                 <strong id="queueTitle">Run required checks on qaoa-sweep</strong>
               </div>
               <button class="ghost-button" id="queueButton">Queue checks</button>
+            </div>
+          </section>
+
+          <section class="workspace-panel span-12" data-panel="bench workspace circuit collab">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">CI/CD for experiments</p>
+                <h2>Required automation gates</h2>
+              </div>
+              <span class="badge live" id="ciBadge">7/8 passing</span>
+            </div>
+
+            <div class="ci-grid">
+              <article class="ci-card passing"><strong>Model schema</strong><small>Variables, constraints, and objective compile.</small></article>
+              <article class="ci-card passing"><strong>Circuit lint</strong><small>Gate count, depth, qubit mapping, and unsupported operations checked.</small></article>
+              <article class="ci-card passing"><strong>Simulator smoke test</strong><small>Runs on local Aer-style simulator before hardware submission.</small></article>
+              <article class="ci-card warning"><strong>Hardware budget</strong><small>Braket queue and QPU spend need reviewer approval.</small></article>
+              <article class="ci-card passing"><strong>Baseline fairness</strong><small>Classical detector and optimizer baselines are included.</small></article>
+              <article class="ci-card passing"><strong>Reproducibility</strong><small>Dataset checksum, environment hash, and seed policy captured.</small></article>
+              <article class="ci-card passing"><strong>Security</strong><small>No secrets, PII, or restricted datasets exposed in branch artifacts.</small></article>
+              <article class="ci-card passing"><strong>Report contract</strong><small>Decision report includes metric table and reviewer signoff.</small></article>
             </div>
           </section>
 

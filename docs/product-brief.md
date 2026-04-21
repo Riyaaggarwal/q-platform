@@ -106,6 +106,82 @@ The day-to-day user flow:
 This makes Q-Platform familiar to technical teams while still being specialized for
 optimization and quantum evaluation.
 
+## Quantum Circuit Creation
+
+Circuit creation should not be a separate toy editor. It should be part of the Q-Repo.
+
+A user can create circuits in three ways:
+
+- **Visual circuit studio**: drag gates, parameter blocks, measurement operations, and
+  feature maps onto qubit lanes.
+- **Code-native import**: import Qiskit, PennyLane, Braket, OpenQASM, or internal circuit
+  files and render them as versioned artifacts.
+- **Template generation**: create QAOA, VQE, quantum-kernel, amplitude-estimation, or
+  annealing-compatible workflows from problem templates.
+
+Each circuit commit should track:
+
+- qubit count,
+- gate depth,
+- two-qubit gate count,
+- parameter count,
+- target backend compatibility,
+- estimated runtime and cost,
+- simulator result,
+- hardware result when available.
+
+The key product move is that circuits are reviewed like code. A reviewer should be able
+to comment on an ansatz, feature map, encoding choice, depth, noise sensitivity, or
+hardware budget before the experiment is merged.
+
+## Quantum Anomaly Detection
+
+Anomaly detection can become a strong applied workflow because it maps naturally to
+industry data: grid telemetry, finance transactions, manufacturing signals, cyber logs,
+and sensor streams.
+
+From a quantum point of view, Q-Platform should support several routes:
+
+- **Quantum kernel anomaly detection**: encode data into quantum feature maps, compute
+  similarity kernels, and compare against one-class SVM or kernel methods.
+- **Variational quantum classifiers**: train parameterized circuits against labeled
+  anomalies when labels exist.
+- **Quantum-inspired distance search**: use annealing or hybrid solvers to identify
+  unusual clusters or constraint-breaking states.
+- **Amplitude and state encoding studies**: evaluate whether a data representation
+  produces separability or signal compression worth further investigation.
+
+Every workflow must compare against classical detectors: isolation forest, one-class
+SVM, robust covariance, autoencoders, and rules. Without this baseline discipline, the
+platform becomes a demo machine instead of decision infrastructure.
+
+## CI/CD For Experiments
+
+CI/CD should mean "continuous integration and delivery of evidence."
+
+When a user commits to a branch, Q-Checks should run automatically:
+
+- model schema validation,
+- dataset checksum and drift checks,
+- circuit linting,
+- simulator smoke tests,
+- hardware compatibility checks,
+- estimated queue time and budget checks,
+- classical baseline checks,
+- reproducibility checks,
+- security and secret scanning,
+- report contract validation.
+
+Merge rules should be configurable:
+
+- require classical baseline,
+- require simulator result before hardware run,
+- require approval for spend above a threshold,
+- require repeatability across seeds,
+- require reviewer signoff before a report becomes canonical.
+
+This is where Q-Platform can feel much more serious than a notebook workflow.
+
 ## First Product Promise
 
 Before a customer spends six months on a quantum proof of concept, Q-Platform should
