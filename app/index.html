@@ -124,6 +124,107 @@
         </section>
 
         <div class="workspace-grid">
+          <section class="workspace-panel span-12" data-panel="workspace model circuit bench">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Start here</p>
+                <h2>Create a Q-Repo</h2>
+              </div>
+              <span class="badge live" id="repoCreateBadge">Draft</span>
+            </div>
+
+            <div class="create-repo">
+              <div class="repo-form">
+                <label>
+                  <span>Repo name</span>
+                  <input id="newRepoName" value="battery-dispatch-pilot" />
+                </label>
+                <label>
+                  <span>Use case</span>
+                  <select id="newRepoTemplate">
+                    <option>Optimization benchmark</option>
+                    <option>Quantum anomaly detection</option>
+                    <option>Circuit validation</option>
+                    <option>Simulation study</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Primary claim</span>
+                  <input id="newRepoClaim" value="Hybrid quantum route improves dispatch cost." />
+                </label>
+                <button class="primary-button" id="createRepoButton">Create Q-Repo</button>
+              </div>
+
+              <div class="template-picker">
+                <button class="start-template active" data-start-template="Optimization benchmark">
+                  <strong>Optimization benchmark</strong>
+                  <small>Routing, scheduling, portfolio, energy, graph problems.</small>
+                </button>
+                <button class="start-template" data-start-template="Quantum anomaly detection">
+                  <strong>Quantum anomaly detection</strong>
+                  <small>Telemetry, fraud, drift, sensor, and event streams.</small>
+                </button>
+                <button class="start-template" data-start-template="Circuit validation">
+                  <strong>Circuit validation</strong>
+                  <small>QAOA, VQE, kernels, feature maps, transpilation checks.</small>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section class="workspace-panel span-12" data-panel="workspace model circuit bench automation">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Connectors</p>
+                <h2>Bring work in from existing tools</h2>
+              </div>
+              <span class="badge" id="connectorBadge">2 connected</span>
+            </div>
+
+            <div class="connector-grid">
+              <article class="connector-card connected">
+                <strong>Jupyter notebooks</strong>
+                <p>Import `.ipynb` files and detect datasets, circuits, parameters, and claims.</p>
+                <button class="ghost-button connector-action" data-connector="Jupyter notebooks">Connected</button>
+              </article>
+              <article class="connector-card connected">
+                <strong>GitHub</strong>
+                <p>Sync repos, notebooks, scripts, datasets, and benchmark artifacts.</p>
+                <button class="ghost-button connector-action" data-connector="GitHub">Connected</button>
+              </article>
+              <article class="connector-card">
+                <strong>Qiskit Runtime</strong>
+                <p>Run sampler/estimator jobs, import circuits, and attach runtime metadata.</p>
+                <button class="ghost-button connector-action" data-connector="Qiskit Runtime">Connect</button>
+              </article>
+              <article class="connector-card">
+                <strong>AWS Braket</strong>
+                <p>Submit hybrid jobs, track queues, estimate spend, and collect artifacts.</p>
+                <button class="ghost-button connector-action" data-connector="AWS Braket">Connect</button>
+              </article>
+              <article class="connector-card">
+                <strong>PennyLane</strong>
+                <p>Import QML workflows, templates, differentiable circuits, and metrics.</p>
+                <button class="ghost-button connector-action" data-connector="PennyLane">Connect</button>
+              </article>
+              <article class="connector-card">
+                <strong>D-Wave / annealing</strong>
+                <p>Benchmark annealing and quantum-inspired optimization against baselines.</p>
+                <button class="ghost-button connector-action" data-connector="D-Wave annealing">Connect</button>
+              </article>
+              <article class="connector-card">
+                <strong>Datasets</strong>
+                <p>Upload CSV, Parquet, S3, warehouse exports, checksums, and lineage.</p>
+                <button class="ghost-button connector-action" data-connector="Datasets">Attach</button>
+              </article>
+              <article class="connector-card">
+                <strong>Local simulators</strong>
+                <p>Run smoke tests without hardware spend before submitting to QPUs.</p>
+                <button class="ghost-button connector-action" data-connector="Local simulators">Enable</button>
+              </article>
+            </div>
+          </section>
+
           <section class="workspace-panel span-12" data-panel="workspace model bench collab circuit automation report trust">
             <div class="section-heading">
               <div>

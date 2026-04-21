@@ -10,6 +10,8 @@
 ## Phase 1: MVP
 
 - Workspace and project structure.
+- Create Q-Repo flow with templates for optimization, anomaly detection, circuit validation, and simulation studies.
+- Mock connector flow for notebooks, GitHub, datasets, and local simulation.
 - Dataset upload and version metadata.
 - Optimization template builder for portfolio, routing, and scheduling.
 - Classical baseline runs with transparent metrics.
@@ -31,6 +33,8 @@
 - Qiskit Runtime integration.
 - AWS Braket integration.
 - D-Wave Ocean integration if annealing use cases are in scope.
+- GitHub sync and notebook parser.
+- Dataset connector with checksums and lineage.
 - Job queue and artifact storage.
 - Environment pinning and run reproducibility.
 - Organization permissions and audit trail.

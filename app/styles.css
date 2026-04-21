@@ -416,6 +416,99 @@ h3 {
   line-height: 1.45;
 }
 
+.create-repo {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+  gap: 16px;
+}
+
+.repo-form,
+.template-picker {
+  display: grid;
+  gap: 10px;
+}
+
+.repo-form label {
+  display: grid;
+  gap: 6px;
+}
+
+.repo-form label span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.repo-form input,
+.repo-form select {
+  min-height: 42px;
+  width: 100%;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.start-template {
+  min-height: 82px;
+  padding: 13px;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.start-template.active {
+  border-color: var(--teal);
+  background: #eefafa;
+}
+
+.start-template strong,
+.start-template small {
+  display: block;
+}
+
+.start-template small {
+  margin-top: 6px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.connector-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.connector-card {
+  min-height: 172px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdfc;
+}
+
+.connector-card.connected {
+  border-color: #cce8d8;
+  background: #f5fbf7;
+}
+
+.connector-card strong,
+.connector-card p {
+  display: block;
+}
+
+.connector-card p {
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.connector-card button {
+  width: 100%;
+  margin-top: 8px;
+}
+
 .branch-list,
 .file-list {
   display: grid;
@@ -1165,6 +1258,7 @@ select,
 
   .pipeline,
   .platform-suite,
+  .connector-grid,
   .claim-grid,
   .pain-grid,
   .repo-flow,
@@ -1213,6 +1307,8 @@ select,
   .status-strip,
   .pipeline,
   .platform-suite,
+  .create-repo,
+  .connector-grid,
   .claim-grid,
   .pain-grid,
   .repo-flow,

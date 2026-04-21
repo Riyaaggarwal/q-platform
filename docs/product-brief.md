@@ -137,13 +137,14 @@ jobs, hardware access, or circuit design.
 
 Build the first useful version around one flow:
 
-1. Import an existing quantum or quantum-inspired PoC.
-2. Detect or manually write the claims being made.
-3. Require strong classical baselines.
-4. Run reproducibility checks across seeds and environments.
-5. Capture cost, queue, and hardware metadata.
-6. Review the claim with collaborators.
-7. Generate an evidence pack and decision recommendation.
+1. Create a Q-Repo from a template.
+2. Connect or import existing work from notebooks, GitHub, datasets, or quantum SDKs.
+3. Detect or manually write the claims being made.
+4. Require strong classical baselines.
+5. Run reproducibility checks across seeds and environments.
+6. Capture cost, queue, and hardware metadata.
+7. Review the claim with collaborators.
+8. Generate an evidence pack and decision recommendation.
 
 This is useful even before deep circuit design is mature.
 
@@ -161,6 +162,26 @@ Priority order:
 6. **External data room**: read-only sharing with redaction and access logs.
 7. **Budget governance**: approvals for QPU spend and reruns.
 8. **Integration adapters**: Qiskit, Braket, PennyLane, D-Wave, and later SNN workflows.
+
+## Connector Strategy
+
+Do not start by building every deep integration. Start with import and metadata capture.
+
+MVP connectors:
+
+- **Jupyter notebooks**: parse cells, outputs, parameters, plots, and claims.
+- **GitHub**: import repo files and sync Q-Repo artifacts.
+- **Dataset upload**: CSV, Parquet, and object storage references with checksums.
+- **Local simulator**: run smoke checks without cloud credentials.
+
+Next connectors:
+
+- **Qiskit Runtime**: job metadata, circuits, estimator/sampler results.
+- **AWS Braket**: hybrid jobs, queue time, spend estimate, artifacts.
+- **PennyLane**: QML workflows and differentiable circuit templates.
+- **D-Wave / annealing**: QUBO and hybrid optimization benchmarks.
+
+This keeps the first product shippable while still showing the future platform path.
 
 ## Target Users
 

@@ -422,6 +422,40 @@ document.querySelectorAll(".branch-row").forEach((button) => {
   });
 });
 
+document.querySelectorAll(".start-template").forEach((button) => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".start-template").forEach((item) => item.classList.remove("active"));
+    button.classList.add("active");
+    document.querySelector("#newRepoTemplate").value = button.dataset.startTemplate;
+    document.querySelector("#repoCreateBadge").textContent = "Template selected";
+  });
+});
+
+document.querySelector("#createRepoButton").addEventListener("click", () => {
+  const repoName = document.querySelector("#newRepoName").value.trim() || "untitled-q-repo";
+  const template = document.querySelector("#newRepoTemplate").value;
+  const claim = document.querySelector("#newRepoClaim").value.trim() || "New quantum claim";
+  document.querySelector("#repoName").textContent = repoName;
+  document.querySelector("#repoDescription").textContent = `${template} created with first claim: ${claim}`;
+  document.querySelector("#repoCreateBadge").textContent = "Q-Repo created";
+  document.querySelector("#statusReview").textContent = "Repo draft created";
+  comments.unshift(["Q-Repo", `${repoName} created from ${template}.`]);
+  comments.unshift(["Claim Ledger", `Initial claim added: ${claim}`]);
+  render();
+});
+
+document.querySelectorAll(".connector-action").forEach((button) => {
+  button.addEventListener("click", () => {
+    const name = button.dataset.connector;
+    button.textContent = "Connected";
+    button.closest(".connector-card").classList.add("connected");
+    document.querySelector("#connectorBadge").textContent = `${name} connected`;
+    document.querySelector("#auditState").textContent = `${name} connector added to the Q-Repo`;
+    comments.unshift(["Connector", `${name} connected and ready for import.`]);
+    render();
+  });
+});
+
 document.querySelectorAll(".nav-item").forEach((button) => {
   button.addEventListener("click", () => {
     document.querySelectorAll(".nav-item").forEach((item) => item.classList.remove("active"));
