@@ -25,10 +25,22 @@
           <button class="nav-item" data-view="report">Report</button>
         </nav>
 
+        <div class="workspace-switcher" aria-label="Workspace selector">
+          <span class="panel-label">Workspace</span>
+          <button class="workspace-choice active" data-workspace="energy">
+            <strong>GridLab Ventures</strong>
+            <small>Energy optimization</small>
+          </button>
+          <button class="workspace-choice" data-workspace="finance">
+            <strong>Northstar Quant</strong>
+            <small>Portfolio research</small>
+          </button>
+        </div>
+
         <div class="sidebar-panel">
           <span class="panel-label">Current study</span>
-          <strong>Battery fleet dispatch</strong>
-          <p>Testing whether quantum-inspired search improves dispatch cost under grid constraints.</p>
+          <strong id="sidebarStudy">Battery fleet dispatch</strong>
+          <p id="sidebarStudyCopy">Testing whether quantum-inspired search improves dispatch cost under grid constraints.</p>
         </div>
       </aside>
 
@@ -37,6 +49,10 @@
           <div>
             <p class="eyebrow">Q-Collab workspace</p>
             <h1>Prove where quantum-ready optimization creates value.</h1>
+            <p class="topbar-copy">
+              Turn a real operational problem into a versioned experiment, run strong
+              baselines beside quantum methods, and package the evidence for a decision.
+            </p>
           </div>
           <div class="topbar-actions">
             <button class="ghost-button" id="reviewButton">Request review</button>
@@ -61,9 +77,67 @@
             <span>Review</span>
             <strong id="statusReview">Draft</strong>
           </div>
+          <div>
+            <span>Evidence score</span>
+            <strong id="statusEvidence">74%</strong>
+          </div>
+        </section>
+
+        <section class="pipeline" aria-label="Experiment pipeline">
+          <button class="pipeline-step active" data-step="intake">
+            <span>01</span>
+            <strong>Define use case</strong>
+          </button>
+          <button class="pipeline-step active" data-step="model">
+            <span>02</span>
+            <strong>Build model</strong>
+          </button>
+          <button class="pipeline-step active" data-step="benchmark">
+            <span>03</span>
+            <strong>Benchmark solvers</strong>
+          </button>
+          <button class="pipeline-step" data-step="review">
+            <span>04</span>
+            <strong>Collaborative review</strong>
+          </button>
+          <button class="pipeline-step" data-step="decision">
+            <span>05</span>
+            <strong>Decision package</strong>
+          </button>
         </section>
 
         <div class="workspace-grid">
+          <section class="workspace-panel span-5" data-panel="workspace model">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Use case intake</p>
+                <h2>Commercial hypothesis</h2>
+              </div>
+              <span class="badge">Founder view</span>
+            </div>
+
+            <div class="intake-list">
+              <label>
+                <span>Decision owner</span>
+                <input id="ownerInput" value="VP Grid Operations" />
+              </label>
+              <label>
+                <span>Value target</span>
+                <input id="valueInput" value="Reduce dispatch cost by 8-12%" />
+              </label>
+              <label>
+                <span>Risk to prove</span>
+                <input id="riskInput" value="Quantum route must beat tuned classical baseline." />
+              </label>
+            </div>
+
+            <div class="value-card">
+              <span>Estimated annual value</span>
+              <strong id="valueEstimate">$4.8M</strong>
+              <p>Based on 2.1% dispatch improvement across the current battery fleet.</p>
+            </div>
+          </section>
+
           <section class="workspace-panel span-7" data-panel="workspace model">
             <div class="section-heading">
               <div>
@@ -136,6 +210,47 @@
             </div>
           </section>
 
+          <section class="workspace-panel span-7" data-panel="bench workspace">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Execution</p>
+                <h2>Backend readiness</h2>
+              </div>
+              <span class="badge live" id="backendBadge">4 adapters healthy</span>
+            </div>
+
+            <div class="backend-grid">
+              <article>
+                <span class="health-dot"></span>
+                <strong>Classical worker pool</strong>
+                <small>Available now</small>
+              </article>
+              <article>
+                <span class="health-dot"></span>
+                <strong>Qiskit Runtime</strong>
+                <small>Credentials valid</small>
+              </article>
+              <article>
+                <span class="health-dot warning"></span>
+                <strong>AWS Braket</strong>
+                <small>Queue estimate 11 min</small>
+              </article>
+              <article>
+                <span class="health-dot"></span>
+                <strong>Hybrid annealing</strong>
+                <small>Cost estimate ready</small>
+              </article>
+            </div>
+
+            <div class="run-queue">
+              <div>
+                <span>Next run plan</span>
+                <strong id="queueTitle">Repeatability sweep x 20 seeds</strong>
+              </div>
+              <button class="ghost-button" id="queueButton">Queue sweep</button>
+            </div>
+          </section>
+
           <section class="workspace-panel span-8" data-panel="workspace bench report">
             <div class="section-heading">
               <div>
@@ -203,6 +318,31 @@
               </p>
             </div>
             <button class="ghost-button full-width" id="exportButton">Mark report ready</button>
+          </section>
+
+          <section class="workspace-panel span-6" data-panel="report collab">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Investment lens</p>
+                <h2>Why this becomes a company</h2>
+              </div>
+              <span class="badge">Thesis</span>
+            </div>
+
+            <div class="thesis-list">
+              <div>
+                <strong>Buyer pain</strong>
+                <p>Teams cannot tell which quantum claims survive serious baselines.</p>
+              </div>
+              <div>
+                <strong>Wedge</strong>
+                <p>Optimization benchmarking for energy, logistics, and finance teams.</p>
+              </div>
+              <div>
+                <strong>Moat</strong>
+                <p>Experiment knowledge graph across models, datasets, solvers, and outcomes.</p>
+              </div>
+            </div>
           </section>
 
           <section class="workspace-panel span-6" data-panel="workspace model">

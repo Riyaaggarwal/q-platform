@@ -74,8 +74,30 @@ const comments = [
   ["Dev", "Backend adapters are normalized enough for Qiskit and Braket next."]
 ];
 
+const workspaces = {
+  energy: {
+    study: "Battery fleet dispatch",
+    copy: "Testing whether quantum-inspired search improves dispatch cost under grid constraints.",
+    template: "energy",
+    owner: "VP Grid Operations",
+    value: "Reduce dispatch cost by 8-12%",
+    risk: "Quantum route must beat tuned classical baseline.",
+    estimate: "$4.8M"
+  },
+  finance: {
+    study: "Portfolio risk allocation",
+    copy: "Measuring whether QUBO formulations improve allocation quality under exposure caps.",
+    template: "portfolio",
+    owner: "Head of Quant Research",
+    value: "Improve risk-adjusted return by 3-5%",
+    risk: "Hybrid search must stay explainable to the investment committee.",
+    estimate: "$2.1M"
+  }
+};
+
 let activeTemplate = "energy";
 let activeView = "workspace";
+let activeWorkspace = "energy";
 let selectedMetric = "quality";
 let selectedSolvers = new Set(baseRuns.map((run) => run.id));
 
@@ -140,6 +162,15 @@ function drawResults() {
   ctx.clearRect(0, 0, resultCanvas.width, resultCanvas.height);
   ctx.fillStyle = "#fbfdfc";
   ctx.fillRect(0, 0, resultCanvas.width, resultCanvas.height);
+
+  if (!runs.length) {
+    ctx.fillStyle = "#5f6f76";
+    ctx.font = "700 18px Inter, system-ui, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("Select at least one solver to compare results.", resultCanvas.width / 2, 180);
+    return;
+  }
+
   ctx.strokeStyle = "#dce5e5";
   ctx.lineWidth = 1;
 
@@ -169,7 +200,17 @@ function drawResults() {
 }
 
 function renderRows() {
-  resultRows.innerHTML = getActiveRuns()
+  const runs = getActiveRuns();
+  if (!runs.length) {
+    resultRows.innerHTML = `
+      <tr>
+        <td colspan="6">No solvers selected.</td>
+      </tr>
+    `;
+    return;
+  }
+
+  resultRows.innerHTML = runs
     .map(
       (run) => `
         <tr>
@@ -200,9 +241,11 @@ function renderComments() {
 
 function updateStatus() {
   const data = templates[activeTemplate];
+  const evidence = Math.min(96, 54 + selectedSolvers.size * 5 + comments.length * 2);
   document.querySelector("#statusProblem").textContent = data.name;
   document.querySelector("#statusDataset").textContent = data.dataset;
   document.querySelector("#statusSolvers").textContent = `${selectedSolvers.size} selected`;
+  document.querySelector("#statusEvidence").textContent = `${evidence}%`;
   document.querySelector("#reportSummary").textContent = data.summary;
 }
 
@@ -227,6 +270,32 @@ document.querySelectorAll(".template-card").forEach((button) => {
     document.querySelectorAll(".template-card").forEach((item) => item.classList.remove("active"));
     button.classList.add("active");
     activeTemplate = button.dataset.template;
+    document.querySelector("#queueTitle").textContent =
+      activeTemplate === "routing" ? "Hybrid route cluster sweep" : "Repeatability sweep x 20 seeds";
+    render();
+  });
+});
+
+document.querySelectorAll(".workspace-choice").forEach((button) => {
+  button.addEventListener("click", () => {
+    const workspace = workspaces[button.dataset.workspace];
+    activeWorkspace = button.dataset.workspace;
+    activeTemplate = workspace.template;
+
+    document.querySelectorAll(".workspace-choice").forEach((item) => item.classList.remove("active"));
+    button.classList.add("active");
+
+    document.querySelectorAll(".template-card").forEach((item) => {
+      item.classList.toggle("active", item.dataset.template === activeTemplate);
+    });
+
+    document.querySelector("#sidebarStudy").textContent = workspace.study;
+    document.querySelector("#sidebarStudyCopy").textContent = workspace.copy;
+    document.querySelector("#ownerInput").value = workspace.owner;
+    document.querySelector("#valueInput").value = workspace.value;
+    document.querySelector("#riskInput").value = workspace.risk;
+    document.querySelector("#valueEstimate").textContent = workspace.estimate;
+    comments.unshift(["System", `${workspace.study} workspace loaded.`]);
     render();
   });
 });
@@ -240,6 +309,25 @@ document.querySelectorAll(".nav-item").forEach((button) => {
   });
 });
 
+document.querySelectorAll(".pipeline-step").forEach((button) => {
+  button.addEventListener("click", () => {
+    const viewByStep = {
+      intake: "workspace",
+      model: "model",
+      benchmark: "bench",
+      review: "collab",
+      decision: "report"
+    };
+    activeView = viewByStep[button.dataset.step];
+    document.querySelectorAll(".nav-item").forEach((item) => {
+      item.classList.toggle("active", item.dataset.view === activeView);
+    });
+    document.querySelectorAll(".pipeline-step").forEach((item) => item.classList.remove("active"));
+    button.classList.add("active");
+    render();
+  });
+});
+
 document.querySelectorAll("[data-solver]").forEach((checkbox) => {
   checkbox.addEventListener("change", () => {
     if (checkbox.checked) {
@@ -248,6 +336,13 @@ document.querySelectorAll("[data-solver]").forEach((checkbox) => {
       selectedSolvers.delete(checkbox.dataset.solver);
     }
     render();
+  });
+});
+
+["ownerInput", "valueInput", "riskInput"].forEach((id) => {
+  document.querySelector(`#${id}`).addEventListener("change", () => {
+    document.querySelector("#statusReview").textContent = "Hypothesis updated";
+    document.querySelector("#auditState").textContent = "Commercial hypothesis changed after last run";
   });
 });
 
@@ -269,6 +364,7 @@ document.querySelector("#commentForm").addEventListener("submit", (event) => {
 document.querySelector("#runButton").addEventListener("click", () => {
   document.querySelector("#statusReview").textContent = "Benchmark complete";
   document.querySelector("#auditState").textContent = "New run captured with full provenance";
+  document.querySelector("#backendBadge").textContent = `${selectedSolvers.size} adapters used`;
   baseRuns.forEach((run, index) => {
     run.quality = Math.min(98, run.quality + (index % 2 === 0 ? 1 : 2));
     run.runtime = Math.max(24, run.runtime - (index + 1) * 2);
@@ -278,13 +374,24 @@ document.querySelector("#runButton").addEventListener("click", () => {
 
 document.querySelector("#reviewButton").addEventListener("click", () => {
   document.querySelector("#statusReview").textContent = "Review requested";
+  document.querySelectorAll(".pipeline-step").forEach((item) => {
+    item.classList.toggle("active", ["intake", "model", "benchmark", "review"].includes(item.dataset.step));
+  });
   comments.unshift(["System", "Review request sent to workspace reviewers."]);
-  renderComments();
+  render();
+});
+
+document.querySelector("#queueButton").addEventListener("click", () => {
+  document.querySelector("#queueTitle").textContent = "Sweep queued with provenance lock";
+  document.querySelector("#statusReview").textContent = "Sweep queued";
+  comments.unshift(["System", "Repeatability sweep queued for selected solvers."]);
+  render();
 });
 
 document.querySelector("#exportButton").addEventListener("click", () => {
   document.querySelector("#reportBadge").textContent = "Ready to share";
   document.querySelector("#statusReview").textContent = "Report ready";
+  document.querySelectorAll(".pipeline-step").forEach((item) => item.classList.add("active"));
 });
 
 render();

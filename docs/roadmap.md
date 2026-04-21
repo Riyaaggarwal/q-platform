@@ -16,6 +16,8 @@
 - Stubbed quantum backend adapters that preserve the future architecture.
 - Experiment comparison dashboard.
 - Comments, review status, and shareable reports.
+- Commercial hypothesis intake: decision owner, value target, risk to prove.
+- Evidence score that tracks whether a workflow is ready for customer or internal review.
 
 ## Phase 2: Real Integrations
 
@@ -47,3 +49,11 @@
 The company should avoid becoming a "quantum dashboard." The sharper opportunity is
 decision infrastructure: a trusted way to decide whether a quantum, quantum-inspired,
 or classical method is worth using for a real optimization problem.
+
+Near-term founder discipline:
+
+- Sell the value of better decisions, not the novelty of quantum.
+- Keep workflows reproducible from day one.
+- Make classical baselines excellent so quantum results are credible.
+- Pick one or two industries for early proof, likely energy and logistics.
+- Treat SNN as an expansion path once the solver adapter layer is real.

@@ -55,6 +55,32 @@ Good first problem templates:
 - energy dispatch,
 - max-cut and graph partitioning.
 
+## Product Loop
+
+The app should make one repeatable loop feel obvious:
+
+1. Capture a commercial or research hypothesis.
+2. Turn it into a constrained optimization model.
+3. Run trusted classical baselines first.
+4. Add quantum, quantum-inspired, and future SNN solvers through adapters.
+5. Compare quality, runtime, cost, feasibility, and reproducibility.
+6. Ask reviewers whether the evidence is decision-grade.
+7. Export a report that explains whether the use case deserves more investment.
+
+That loop is the product. The quantum integrations are powerful, but they are not the
+whole company.
+
+## First Product Promise
+
+Before a customer spends six months on a quantum proof of concept, Q-Platform should
+help them answer:
+
+- Is this problem formulated well enough to benchmark?
+- What is the strongest classical baseline?
+- Does any quantum or quantum-inspired route outperform it on a meaningful metric?
+- Is the result reproducible enough to justify the next step?
+- What would it cost to operationalize?
+
 ## Why Now
 
 - Quantum hardware is improving, but value claims remain hard to verify.
