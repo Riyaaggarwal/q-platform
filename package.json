@@ -1,0 +1,10 @@
+{
+  "name": "q-platform",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Collaborative platform prototype for quantum-ready optimization experiments.",
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/serve.mjs"
+  }
+}
