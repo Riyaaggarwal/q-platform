@@ -728,6 +728,7 @@ canvas {
   background: #fbfdfc;
 }
 
+.claim-grid,
 .pain-grid,
 .workbench-list,
 .automation-grid {
@@ -735,10 +736,12 @@ canvas {
   gap: 10px;
 }
 
+.claim-grid,
 .pain-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.claim-card,
 .pain-grid article,
 .workbench-list article,
 .automation-grid article {
@@ -746,6 +749,50 @@ canvas {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fbfdfc;
+}
+
+.claim-card {
+  min-height: 210px;
+}
+
+.claim-card span {
+  display: inline-flex;
+  min-height: 26px;
+  align-items: center;
+  padding: 0 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.claim-card.promoted span {
+  color: var(--green);
+  background: #f1faf5;
+}
+
+.claim-card.pending span {
+  color: #7a4f00;
+  background: #fff0c7;
+}
+
+.claim-card.blocked span {
+  color: #9b2f1c;
+  background: #ffe8e1;
+}
+
+.claim-card strong {
+  display: block;
+  margin: 14px 0 8px;
+}
+
+.claim-card p {
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.claim-action {
+  width: 100%;
+  margin-top: auto;
 }
 
 .pain-grid strong,
@@ -826,6 +873,74 @@ canvas {
   font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
+}
+
+.audit-list,
+.pack-list,
+.onboarding-flow {
+  display: grid;
+  gap: 10px;
+}
+
+.audit-list article,
+.onboarding-flow article,
+.data-room {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdfc;
+}
+
+.audit-list p,
+.onboarding-flow p,
+.data-room p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.pack-list label {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdfc;
+}
+
+.pack-list input {
+  width: 17px;
+  height: 17px;
+  margin-top: 2px;
+  accent-color: var(--teal-dark);
+}
+
+.data-room strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.data-room button {
+  margin-top: 12px;
+}
+
+.onboarding-flow {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.onboarding-flow span {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 14px;
+  place-items: center;
+  color: #ffffff;
+  border-radius: 8px;
+  background: var(--teal-dark);
+  font-size: 12px;
+  font-weight: 900;
 }
 
 .automation-grid {
@@ -1050,9 +1165,11 @@ select,
 
   .pipeline,
   .platform-suite,
+  .claim-grid,
   .pain-grid,
   .repo-flow,
   .trust-meter,
+  .onboarding-flow,
   .ci-grid,
   .backend-grid,
   .automation-grid {
@@ -1096,10 +1213,12 @@ select,
   .status-strip,
   .pipeline,
   .platform-suite,
+  .claim-grid,
   .pain-grid,
   .repo-flow,
   .trust-meter,
   .trust-actions,
+  .onboarding-flow,
   .backend-grid,
   .circuit-layout,
   .ci-grid,

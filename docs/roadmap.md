@@ -22,6 +22,9 @@
 - Add basic automations: nightly sweep, budget guard, report generator, and check reruns.
 - Add Q-Trust: baseline fairness score, reproducibility score, claim risk, and decision gate.
 - Make every report end with one recommendation: stop, rerun, publish, pilot, or fund.
+- Claim Ledger with claim owner, evidence status, risk, and promotion state.
+- Evidence Pack checklist and restricted Data Room sharing flow.
+- Baseline Audit queue for mandatory classical comparisons.
 
 ## Phase 2: Real Integrations
 
@@ -60,6 +63,9 @@ or classical method is worth using for a real optimization problem.
 The wedge should be proof quality. Other platforms can provide access, notebooks,
 circuits, and jobs. Q-Platform should own the moment when someone asks: "Can we trust
 this result enough to make a decision?"
+
+The first demo should make one thing obvious: a messy quantum PoC enters Q-Platform,
+and a decision-ready evidence pack comes out.
 
 Near-term founder discipline:
 

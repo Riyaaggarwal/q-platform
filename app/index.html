@@ -25,6 +25,7 @@
           <button class="nav-item" data-view="collab">Q-Collab</button>
           <button class="nav-item" data-view="trust">Trust Layer</button>
           <button class="nav-item" data-view="automation">Automations</button>
+          <button class="nav-item" data-view="claims">Claims</button>
           <button class="nav-item" data-view="report">Reports</button>
         </nav>
 
@@ -152,6 +153,37 @@
             </div>
           </section>
 
+          <section class="workspace-panel span-12" data-panel="workspace claims trust collab report">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Claim Ledger</p>
+                <h2>Every quantum claim has evidence, risk, and owner</h2>
+              </div>
+              <span class="badge live" id="claimBadge">3 active claims</span>
+            </div>
+
+            <div class="claim-grid">
+              <article class="claim-card promoted">
+                <span>Ready for pilot</span>
+                <strong>Hybrid annealing reduces dispatch cost by 2.1%</strong>
+                <p>Evidence complete enough for a controlled internal pilot, not external marketing.</p>
+                <button class="ghost-button claim-action" data-claim="Dispatch cost reduction claim">Open evidence</button>
+              </article>
+              <article class="claim-card pending">
+                <span>Needs baseline audit</span>
+                <strong>QAOA reaches comparable quality at lower variance</strong>
+                <p>Classical local-search baseline must be strengthened before claim can advance.</p>
+                <button class="ghost-button claim-action" data-claim="QAOA variance claim">Audit claim</button>
+              </article>
+              <article class="claim-card blocked">
+                <span>Blocked</span>
+                <strong>Quantum kernel detects anomaly drift earlier</strong>
+                <p>Dataset drift is real, but quantum advantage is not isolated from preprocessing yet.</p>
+                <button class="ghost-button claim-action" data-claim="Quantum anomaly drift claim">Request rerun</button>
+              </article>
+            </div>
+          </section>
+
           <section class="workspace-panel span-12" data-panel="workspace trust bench report">
             <div class="section-heading">
               <div>
@@ -274,6 +306,31 @@
             </div>
           </section>
 
+          <section class="workspace-panel span-5" data-panel="workspace trust bench claims">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Baseline Audit</p>
+                <h2>Fairness queue</h2>
+              </div>
+              <span class="badge">Mandatory</span>
+            </div>
+
+            <div class="audit-list">
+              <article>
+                <strong>Classical optimizer strength</strong>
+                <p>Require tuned MIP plus local-search heuristic before quantum claim passes.</p>
+              </article>
+              <article>
+                <strong>Dataset leakage</strong>
+                <p>Validate train/test split for anomaly detection and portfolio examples.</p>
+              </article>
+              <article>
+                <strong>Metric alignment</strong>
+                <p>Confirm runtime, cost, quality, feasibility, and repeatability are weighted correctly.</p>
+              </article>
+            </div>
+          </section>
+
           <section class="workspace-panel span-5" data-panel="workspace trust collab">
             <div class="section-heading">
               <div>
@@ -290,6 +347,43 @@
                 <span>Next funding ask</span>
                 <b>$120k / 8 weeks</b>
               </div>
+            </div>
+          </section>
+
+          <section class="workspace-panel span-7" data-panel="workspace claims report trust">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Evidence Pack</p>
+                <h2>Decision-ready output</h2>
+              </div>
+              <span class="badge live" id="packBadge">6/8 complete</span>
+            </div>
+
+            <div class="pack-list">
+              <label><input type="checkbox" checked /> Problem formulation and constraints</label>
+              <label><input type="checkbox" checked /> Dataset checksum and lineage</label>
+              <label><input type="checkbox" checked /> Classical baseline audit</label>
+              <label><input type="checkbox" checked /> Quantum and quantum-inspired run artifacts</label>
+              <label><input type="checkbox" checked /> Cost, queue, and rerun budget</label>
+              <label><input type="checkbox" checked /> Reviewer comments and signoff</label>
+              <label><input type="checkbox" /> External claim approval</label>
+              <label><input type="checkbox" /> Customer-ready executive summary</label>
+            </div>
+          </section>
+
+          <section class="workspace-panel span-5" data-panel="workspace claims report collab">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Data Room</p>
+                <h2>Shareable proof portal</h2>
+              </div>
+              <span class="badge">Investor/customer</span>
+            </div>
+
+            <div class="data-room">
+              <strong>Grid optimization pilot pack</strong>
+              <p>Share a restricted view with benchmark summary, evidence score, claim ledger, and reviewer signoff.</p>
+              <button class="primary-button full-width" id="dataRoomButton">Prepare share link</button>
             </div>
           </section>
 
@@ -321,6 +415,23 @@
               <span>Estimated annual value</span>
               <strong id="valueEstimate">$4.8M</strong>
               <p>Based on 2.1% dispatch improvement across the current battery fleet.</p>
+            </div>
+          </section>
+
+          <section class="workspace-panel span-7" data-panel="workspace model trust">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Onboarding</p>
+                <h2>From messy PoC to governed Q-Repo</h2>
+              </div>
+              <span class="badge">MVP flow</span>
+            </div>
+
+            <div class="onboarding-flow">
+              <article><span>01</span><strong>Import notebook</strong><p>Pull in Qiskit, Braket, PennyLane, CSVs, and result screenshots.</p></article>
+              <article><span>02</span><strong>Detect claims</strong><p>Extract claims like faster, cheaper, better quality, or earlier anomaly detection.</p></article>
+              <article><span>03</span><strong>Require evidence</strong><p>Attach baselines, seeds, data lineage, hardware settings, and reviewers.</p></article>
+              <article><span>04</span><strong>Publish pack</strong><p>Create a decision report, paper appendix, or customer proof room.</p></article>
             </div>
           </section>
 

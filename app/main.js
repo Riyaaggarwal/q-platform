@@ -551,6 +551,24 @@ document.querySelectorAll(".trust-action").forEach((button) => {
   });
 });
 
+document.querySelectorAll(".claim-action").forEach((button) => {
+  button.addEventListener("click", () => {
+    const name = button.dataset.claim;
+    document.querySelector("#claimBadge").textContent = "Claim opened";
+    document.querySelector("#trustBadge").textContent = "Claim under review";
+    document.querySelector("#statusReview").textContent = "Claim review active";
+    comments.unshift(["Claim Ledger", `${name} opened with evidence requirements.`]);
+    render();
+  });
+});
+
+document.querySelector("#dataRoomButton").addEventListener("click", () => {
+  document.querySelector("#packBadge").textContent = "Share link staged";
+  document.querySelector("#reportBadge").textContent = "Data room staged";
+  comments.unshift(["Q-Collab", "Restricted evidence data room prepared for external review."]);
+  render();
+});
+
 document.querySelector("#exportButton").addEventListener("click", () => {
   activeBranch = "main";
   document.querySelector("#reportBadge").textContent = "Merged to main";

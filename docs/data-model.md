@@ -122,6 +122,37 @@ A Q-Trust evaluation of whether evidence is decision-ready.
 - reviewer_signoff
 - created_at
 
+## Claim
+
+A specific assertion the team wants to prove or reject.
+
+- id
+- repo_id
+- experiment_id
+- title
+- owner
+- status
+- risk_level
+- evidence_pack_id
+- required_checks
+- promotion_state
+- created_at
+
+## Evidence Pack
+
+A shareable bundle for internal or external decision making.
+
+- id
+- repo_id
+- claim_ids
+- included_artifacts
+- baseline_audit_status
+- reproducibility_status
+- cost_summary
+- recommendation
+- access_policy
+- exported_uri
+
 ## Dataset
 
 Versioned data used by one or more experiments.

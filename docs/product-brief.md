@@ -116,6 +116,52 @@ The most defensible first product is **Q-Trust + Q-Bench**:
 That is narrower than "all-in-one quantum platform," but much easier to sell and much
 harder for generic platforms to copy deeply.
 
+## Full Product Objects
+
+To feel like a working product, Q-Platform needs durable objects that users return to:
+
+- **Claim Ledger**: every claim has an owner, evidence status, risk level, required
+  checks, reviewer comments, and promotion state.
+- **Baseline Audit**: mandatory review of whether the classical comparison is strong
+  enough.
+- **Evidence Pack**: the exportable package containing model, dataset, runs, costs,
+  checks, comments, and recommendation.
+- **Data Room**: a restricted external view for customers, investors, grant reviewers,
+  or enterprise leadership.
+- **Decision Gate**: the final recommendation: stop, rerun, publish, pilot, or fund.
+
+These objects separate Q-Platform from broad platforms that focus mainly on coding,
+jobs, hardware access, or circuit design.
+
+## MVP Feature Set
+
+Build the first useful version around one flow:
+
+1. Import an existing quantum or quantum-inspired PoC.
+2. Detect or manually write the claims being made.
+3. Require strong classical baselines.
+4. Run reproducibility checks across seeds and environments.
+5. Capture cost, queue, and hardware metadata.
+6. Review the claim with collaborators.
+7. Generate an evidence pack and decision recommendation.
+
+This is useful even before deep circuit design is mature.
+
+## What To Add Next
+
+Priority order:
+
+1. **Claim Ledger CRUD**: create, edit, filter, and promote claims.
+2. **Baseline recipes**: recommended classical baselines for optimization, anomaly
+   detection, simulation, and QML workflows.
+3. **Notebook importer**: parse notebooks into datasets, circuits, runs, and claims.
+4. **Evidence pack builder**: generate shareable reports from structured artifacts.
+5. **Q-Check runner**: local simulated check execution before real Qiskit/Braket
+   integrations.
+6. **External data room**: read-only sharing with redaction and access logs.
+7. **Budget governance**: approvals for QPU spend and reruns.
+8. **Integration adapters**: Qiskit, Braket, PennyLane, D-Wave, and later SNN workflows.
+
 ## Target Users
 
 - Quantum researchers validating new algorithms against serious baselines.
