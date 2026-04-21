@@ -18,6 +18,7 @@ Core Platform
   Workspace Service
   Q-Repo Service
   Experiment Service
+  Q-Trust Service
   Automation Service
   Circuit Registry
   Model Registry
@@ -134,6 +135,31 @@ Q-Automate should coordinate recurring and event-based work:
 The automation service should treat every action as auditable provenance. If an
 automation updates a report, submits a backend job, or changes workflow status, the
 Q-Repo timeline should show what happened, why, and which artifacts were produced.
+
+## Q-Trust Service
+
+Q-Trust is the differentiating service. It evaluates whether an experiment is safe to
+promote into a business or research claim.
+
+Inputs:
+
+- baseline strength,
+- reproducibility metadata,
+- run variance across seeds,
+- dataset checksum and drift,
+- backend and hardware conditions,
+- cost and queue estimates,
+- reviewer approvals,
+- report completeness.
+
+Outputs:
+
+- baseline fairness score,
+- reproducibility score,
+- cost confidence,
+- claim risk,
+- required next checks,
+- decision recommendation.
 
 ## Circuit Registry
 

@@ -23,6 +23,7 @@
           <button class="nav-item" data-view="circuit">Circuit Studio</button>
           <button class="nav-item" data-view="bench">Q-Bench</button>
           <button class="nav-item" data-view="collab">Q-Collab</button>
+          <button class="nav-item" data-view="trust">Trust Layer</button>
           <button class="nav-item" data-view="automation">Automations</button>
           <button class="nav-item" data-view="report">Reports</button>
         </nav>
@@ -49,11 +50,11 @@
       <main class="main">
         <header class="topbar">
           <div>
-            <p class="eyebrow">Q-Platform / Quantum Work OS</p>
-            <h1>One workspace for quantum research, benchmarks, and decisions.</h1>
+            <p class="eyebrow">Q-Platform / Quantum Evidence OS</p>
+            <h1>Prove quantum value before teams spend serious money.</h1>
             <p class="topbar-copy">
-              Q-Model, Q-Bench, Q-Collab, Circuit Studio, Q-Repos, and automation
-              pipelines in a single platform researchers and industry teams can use daily.
+              The missing trust layer for quantum work: fair baselines, reproducible
+              runs, claim review, budget gates, and decision-grade evidence.
             </p>
           </div>
           <div class="topbar-actions">
@@ -122,31 +123,60 @@
         </section>
 
         <div class="workspace-grid">
-          <section class="workspace-panel span-12" data-panel="workspace model bench collab circuit automation report">
+          <section class="workspace-panel span-12" data-panel="workspace model bench collab circuit automation report trust">
             <div class="section-heading">
               <div>
-                <p class="eyebrow">Core platform</p>
-                <h2>Everything quantum teams need in one place</h2>
+                <p class="eyebrow">Core wedge</p>
+                <h2>Where Q-Platform wins: proof quality, not just access</h2>
               </div>
-              <span class="badge live">Launch thesis</span>
+              <span class="badge live">Differentiated</span>
             </div>
 
             <div class="platform-suite">
               <article>
                 <strong>Q-Model</strong>
-                <p>Build optimization models, quantum circuits, anomaly workflows, and reusable problem templates.</p>
+                <p>Turn messy notebooks and domain problems into versioned, reviewable experiment specs.</p>
               </article>
               <article>
                 <strong>Q-Bench</strong>
-                <p>Run classical, quantum, quantum-inspired, and future SNN methods as comparable checks.</p>
+                <p>Force quantum claims to compete with strong classical and quantum-inspired baselines.</p>
               </article>
               <article>
                 <strong>Q-Collab</strong>
-                <p>Review experiments, comment on assumptions, approve budgets, and share reproducible evidence.</p>
+                <p>Review claims, assumptions, constraints, budgets, reproducibility, and result interpretation.</p>
               </article>
               <article>
                 <strong>Q-Automate</strong>
-                <p>Schedule sweeps, trigger CI/CD, monitor hardware queues, and generate reports automatically.</p>
+                <p>Continuously rerun evidence checks as data, solvers, circuits, and hardware queues change.</p>
+              </article>
+            </div>
+          </section>
+
+          <section class="workspace-panel span-12" data-panel="workspace trust bench report">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Pain points</p>
+                <h2>Problems other platforms do not fully solve</h2>
+              </div>
+              <span class="badge">Trust gap</span>
+            </div>
+
+            <div class="pain-grid">
+              <article>
+                <strong>Quantum claims are hard to trust</strong>
+                <p>Teams can run circuits, but cannot prove whether the result beats the right classical baseline.</p>
+              </article>
+              <article>
+                <strong>PoCs die in notebooks</strong>
+                <p>Experiments are scattered across notebooks, cloud consoles, screenshots, and slide decks.</p>
+              </article>
+              <article>
+                <strong>Hardware cost is opaque</strong>
+                <p>Queue times, QPU spend, simulator cost, and rerun budgets rarely connect to business value.</p>
+              </article>
+              <article>
+                <strong>Research is not decision-ready</strong>
+                <p>Leaders need a defensible answer: continue, pause, publish, or stop funding this use case.</p>
               </article>
             </div>
           </section>
@@ -206,6 +236,60 @@
                 <strong>hybrid-anneal</strong>
                 <small>Hybrid annealing branch waiting for review.</small>
               </button>
+            </div>
+          </section>
+
+          <section class="workspace-panel span-7" data-panel="workspace trust bench report">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Q-Trust</p>
+                <h2>Evidence readiness</h2>
+              </div>
+              <span class="badge live" id="trustBadge">Needs review</span>
+            </div>
+
+            <div class="trust-meter">
+              <div>
+                <span>Baseline fairness</span>
+                <strong>82%</strong>
+              </div>
+              <div>
+                <span>Reproducibility</span>
+                <strong>76%</strong>
+              </div>
+              <div>
+                <span>Cost confidence</span>
+                <strong>68%</strong>
+              </div>
+              <div>
+                <span>Claim risk</span>
+                <strong>Medium</strong>
+              </div>
+            </div>
+
+            <div class="trust-actions">
+              <button class="ghost-button trust-action" data-trust="Classical baseline audit">Audit baseline</button>
+              <button class="ghost-button trust-action" data-trust="Seed repeatability run">Rerun seeds</button>
+              <button class="ghost-button trust-action" data-trust="Claim review checklist">Review claim</button>
+            </div>
+          </section>
+
+          <section class="workspace-panel span-5" data-panel="workspace trust collab">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Decision gate</p>
+                <h2>What should leadership do?</h2>
+              </div>
+              <span class="badge">Board-ready</span>
+            </div>
+
+            <div class="decision-gate">
+              <strong>Continue as controlled pilot</strong>
+              <p>The quantum-inspired route is promising, but the claim is not ready for external marketing until repeatability and cost confidence improve.</p>
+              <div>
+                <span>Next funding ask</span>
+                <b>$120k / 8 weeks</b>
+              </div>
             </div>
           </section>
 
@@ -454,7 +538,7 @@
             </div>
           </section>
 
-          <section class="workspace-panel span-12" data-panel="bench workspace circuit collab">
+          <section class="workspace-panel span-12" data-panel="bench workspace circuit collab trust">
             <div class="section-heading">
               <div>
                 <p class="eyebrow">CI/CD for experiments</p>

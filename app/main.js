@@ -540,6 +540,17 @@ document.querySelectorAll(".automation-action").forEach((button) => {
   });
 });
 
+document.querySelectorAll(".trust-action").forEach((button) => {
+  button.addEventListener("click", () => {
+    const name = button.dataset.trust;
+    document.querySelector("#trustBadge").textContent = "Trust check queued";
+    document.querySelector("#statusReview").textContent = "Evidence under audit";
+    document.querySelector("#auditState").textContent = `${name} added to the evidence review`;
+    comments.unshift(["Q-Trust", `${name} started before this claim can be promoted.`]);
+    render();
+  });
+});
+
 document.querySelector("#exportButton").addEventListener("click", () => {
   activeBranch = "main";
   document.querySelector("#reportBadge").textContent = "Merged to main";

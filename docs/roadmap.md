@@ -20,6 +20,8 @@
 - Evidence score that tracks whether a workflow is ready for customer or internal review.
 - Keep Q-Model, Q-Bench, Q-Collab, Q-Repos, and Q-Automate as visible product modules.
 - Add basic automations: nightly sweep, budget guard, report generator, and check reruns.
+- Add Q-Trust: baseline fairness score, reproducibility score, claim risk, and decision gate.
+- Make every report end with one recommendation: stop, rerun, publish, pilot, or fund.
 
 ## Phase 2: Real Integrations
 
@@ -54,6 +56,10 @@
 The company should avoid becoming a "quantum dashboard." The sharper opportunity is
 decision infrastructure: a trusted way to decide whether a quantum, quantum-inspired,
 or classical method is worth using for a real optimization problem.
+
+The wedge should be proof quality. Other platforms can provide access, notebooks,
+circuits, and jobs. Q-Platform should own the moment when someone asks: "Can we trust
+this result enough to make a decision?"
 
 Near-term founder discipline:
 

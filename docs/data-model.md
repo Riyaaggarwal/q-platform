@@ -105,6 +105,23 @@ A detector configuration for quantum and classical anomaly workflows.
 - metrics
 - threshold_policy
 
+## Trust Assessment
+
+A Q-Trust evaluation of whether evidence is decision-ready.
+
+- id
+- repo_id
+- experiment_id
+- commit_sha
+- baseline_fairness_score
+- reproducibility_score
+- cost_confidence_score
+- claim_risk
+- required_actions
+- recommendation
+- reviewer_signoff
+- created_at
+
 ## Dataset
 
 Versioned data used by one or more experiments.

@@ -60,6 +60,62 @@ The first wedge is optimization benchmarking, but the larger platform expands in
 circuits, anomaly detection, simulation workflows, hardware evaluation, automated
 reports, and team governance.
 
+## Competitive Focus
+
+Do not compete head-on as "another broad quantum workbench." Existing platforms already
+cover cloud access, notebooks, circuit design, jobs, provider catalogs, and developer
+environments.
+
+Q-Platform should focus on the under-served pain:
+
+- Can we trust this quantum result?
+- Did it beat the right classical baseline?
+- Can another team reproduce it?
+- What did the hardware run cost?
+- Is the claim safe to show leadership, customers, investors, or reviewers?
+- Should we continue funding this use case?
+
+This is the wedge: **Q-Platform is the trust and evidence layer for quantum work.**
+
+The product should still include Q-Model, Q-Bench, Q-Collab, Q-Repos, Circuit Studio,
+and Q-Automate, but those modules should serve the evidence mission. The goal is not to
+be the broadest quantum IDE. The goal is to be the place where teams decide whether a
+quantum method is real, reproducible, and worth more investment.
+
+## Pain Points To Own
+
+1. **Baseline fairness**
+   Most quantum PoCs are weak because the classical comparison is too soft. Q-Bench
+   should make strong baselines mandatory.
+
+2. **Reproducibility**
+   Every dataset, seed, SDK version, backend, queue condition, circuit, and parameter
+   choice should be captured.
+
+3. **Claim governance**
+   Teams need to review claims before they become slides, papers, customer reports, or
+   funding asks.
+
+4. **Cost confidence**
+   Hardware spend, simulator cost, queue time, and rerun budgets should be visible next
+   to value estimates.
+
+5. **Decision readiness**
+   The output is not just a chart. It is a recommendation: stop, rerun, publish, pilot,
+   or fund the next phase.
+
+## Product Bet
+
+The most defensible first product is **Q-Trust + Q-Bench**:
+
+- Q-Bench runs the comparisons.
+- Q-Trust judges whether the evidence is good enough.
+- Q-Collab turns that judgment into a review workflow.
+- Q-Automate keeps evidence fresh as data, solvers, and hardware change.
+
+That is narrower than "all-in-one quantum platform," but much easier to sell and much
+harder for generic platforms to copy deeply.
+
 ## Target Users
 
 - Quantum researchers validating new algorithms against serious baselines.
