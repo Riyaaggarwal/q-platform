@@ -18,6 +18,8 @@
 - Comments, review status, and shareable reports.
 - Commercial hypothesis intake: decision owner, value target, risk to prove.
 - Evidence score that tracks whether a workflow is ready for customer or internal review.
+- Keep Q-Model, Q-Bench, Q-Collab, Q-Repos, and Q-Automate as visible product modules.
+- Add basic automations: nightly sweep, budget guard, report generator, and check reruns.
 
 ## Phase 2: Real Integrations
 
@@ -27,6 +29,8 @@
 - Job queue and artifact storage.
 - Environment pinning and run reproducibility.
 - Organization permissions and audit trail.
+- Notebook import from Qiskit, PennyLane, Braket, and Python workflows.
+- Circuit registry with OpenQASM import/export.
 
 ## Phase 3: Enterprise Value
 
@@ -35,6 +39,7 @@
 - Governance, compliance, and private deployment options.
 - Customer-ready benchmark reports.
 - Template marketplace for common optimization workflows.
+- Automation marketplace for repeatable quantum research operations.
 
 ## Phase 4: Intelligence Layer
 

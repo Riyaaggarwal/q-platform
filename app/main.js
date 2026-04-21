@@ -529,6 +529,17 @@ document.querySelector("#queueButton").addEventListener("click", () => {
   render();
 });
 
+document.querySelectorAll(".automation-action").forEach((button) => {
+  button.addEventListener("click", () => {
+    const name = button.dataset.automation;
+    document.querySelector("#automationBadge").textContent = "Automation queued";
+    document.querySelector("#statusReview").textContent = "Automation active";
+    document.querySelector("#auditState").textContent = `${name} updated this Q-Repo workflow`;
+    comments.unshift(["Q-Automate", `${name} was triggered for this workspace.`]);
+    render();
+  });
+});
+
 document.querySelector("#exportButton").addEventListener("click", () => {
   activeBranch = "main";
   document.querySelector("#reportBadge").textContent = "Merged to main";

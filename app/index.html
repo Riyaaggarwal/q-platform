@@ -19,10 +19,11 @@
 
         <nav class="nav-list">
           <button class="nav-item active" data-view="workspace">Q-Repos</button>
-          <button class="nav-item" data-view="model">Model files</button>
-          <button class="nav-item" data-view="circuit">Circuits</button>
-          <button class="nav-item" data-view="bench">Run checks</button>
-          <button class="nav-item" data-view="collab">Reviews</button>
+          <button class="nav-item" data-view="model">Q-Model</button>
+          <button class="nav-item" data-view="circuit">Circuit Studio</button>
+          <button class="nav-item" data-view="bench">Q-Bench</button>
+          <button class="nav-item" data-view="collab">Q-Collab</button>
+          <button class="nav-item" data-view="automation">Automations</button>
           <button class="nav-item" data-view="report">Reports</button>
         </nav>
 
@@ -48,11 +49,11 @@
       <main class="main">
         <header class="topbar">
           <div>
-            <p class="eyebrow">Q-Repo / gridlab/battery-dispatch</p>
-            <h1>GitHub-style collaboration for optimization evidence.</h1>
+            <p class="eyebrow">Q-Platform / Quantum Work OS</p>
+            <h1>One workspace for quantum research, benchmarks, and decisions.</h1>
             <p class="topbar-copy">
-              Version the model, dataset, solver plan, run artifacts, review comments,
-              and final decision report in one reproducible experiment repository.
+              Q-Model, Q-Bench, Q-Collab, Circuit Studio, Q-Repos, and automation
+              pipelines in a single platform researchers and industry teams can use daily.
             </p>
           </div>
           <div class="topbar-actions">
@@ -121,6 +122,35 @@
         </section>
 
         <div class="workspace-grid">
+          <section class="workspace-panel span-12" data-panel="workspace model bench collab circuit automation report">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Core platform</p>
+                <h2>Everything quantum teams need in one place</h2>
+              </div>
+              <span class="badge live">Launch thesis</span>
+            </div>
+
+            <div class="platform-suite">
+              <article>
+                <strong>Q-Model</strong>
+                <p>Build optimization models, quantum circuits, anomaly workflows, and reusable problem templates.</p>
+              </article>
+              <article>
+                <strong>Q-Bench</strong>
+                <p>Run classical, quantum, quantum-inspired, and future SNN methods as comparable checks.</p>
+              </article>
+              <article>
+                <strong>Q-Collab</strong>
+                <p>Review experiments, comment on assumptions, approve budgets, and share reproducible evidence.</p>
+              </article>
+              <article>
+                <strong>Q-Automate</strong>
+                <p>Schedule sweeps, trigger CI/CD, monitor hardware queues, and generate reports automatically.</p>
+              </article>
+            </div>
+          </section>
+
           <section class="workspace-panel span-7" data-panel="workspace collab">
             <div class="section-heading">
               <div>
@@ -258,6 +288,31 @@
               <div class="circuit-canvas" aria-label="Quantum circuit preview">
                 <canvas id="circuitCanvas" width="760" height="360"></canvas>
               </div>
+            </div>
+          </section>
+
+          <section class="workspace-panel span-5" data-panel="workspace model circuit">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Researcher workbench</p>
+                <h2>Notebook to platform</h2>
+              </div>
+              <span class="badge">Import ready</span>
+            </div>
+
+            <div class="workbench-list">
+              <article>
+                <strong>Import notebooks</strong>
+                <p>Convert Qiskit, PennyLane, Braket, and Python notebooks into versioned Q-Repos.</p>
+              </article>
+              <article>
+                <strong>Promote to workflow</strong>
+                <p>Turn one-off experiments into reusable pipelines with parameters, data contracts, and checks.</p>
+              </article>
+              <article>
+                <strong>Publish evidence</strong>
+                <p>Export a paper appendix, internal report, customer benchmark, or grant-ready reproducibility pack.</p>
+              </article>
             </div>
           </section>
 
@@ -417,6 +472,39 @@
               <article class="ci-card passing"><strong>Reproducibility</strong><small>Dataset checksum, environment hash, and seed policy captured.</small></article>
               <article class="ci-card passing"><strong>Security</strong><small>No secrets, PII, or restricted datasets exposed in branch artifacts.</small></article>
               <article class="ci-card passing"><strong>Report contract</strong><small>Decision report includes metric table and reviewer signoff.</small></article>
+            </div>
+          </section>
+
+          <section class="workspace-panel span-12" data-panel="automation workspace bench collab">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Q-Automate</p>
+                <h2>Automation rules for serious quantum work</h2>
+              </div>
+              <span class="badge live" id="automationBadge">5 active</span>
+            </div>
+
+            <div class="automation-grid">
+              <article>
+                <strong>Nightly benchmark sweep</strong>
+                <p>Run selected solvers across datasets, seeds, and parameter ranges every night.</p>
+                <button class="ghost-button automation-action" data-automation="Nightly benchmark sweep">Trigger</button>
+              </article>
+              <article>
+                <strong>Hardware budget guard</strong>
+                <p>Pause QPU submissions when estimated Braket or IBM Runtime spend crosses approval limits.</p>
+                <button class="ghost-button automation-action" data-automation="Hardware budget guard">Enable</button>
+              </article>
+              <article>
+                <strong>Anomaly drift monitor</strong>
+                <p>Detect dataset drift and rerun quantum kernel comparisons when telemetry changes.</p>
+                <button class="ghost-button automation-action" data-automation="Anomaly drift monitor">Arm</button>
+              </article>
+              <article>
+                <strong>Report generator</strong>
+                <p>Produce investor, customer, paper, or grant-ready evidence packs after checks pass.</p>
+                <button class="ghost-button automation-action" data-automation="Report generator">Generate</button>
+              </article>
             </div>
           </section>
 

@@ -18,6 +18,7 @@ Core Platform
   Workspace Service
   Q-Repo Service
   Experiment Service
+  Automation Service
   Circuit Registry
   Model Registry
   Dataset Registry
@@ -116,6 +117,23 @@ Checks should run on every branch commit and review:
 
 Each check writes structured status, logs, artifacts, metrics, and reviewer-facing
 summaries back to the Q-Repo.
+
+## Automation Service
+
+Q-Automate should coordinate recurring and event-based work:
+
+- scheduled benchmark sweeps,
+- branch or commit-triggered check runs,
+- report generation,
+- hardware budget approvals,
+- backend queue monitoring,
+- dataset drift detection,
+- reviewer notifications,
+- publish/export workflows.
+
+The automation service should treat every action as auditable provenance. If an
+automation updates a report, submits a backend job, or changes workflow status, the
+Q-Repo timeline should show what happened, why, and which artifacts were produced.
 
 ## Circuit Registry
 

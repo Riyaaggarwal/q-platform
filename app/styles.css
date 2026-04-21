@@ -390,6 +390,32 @@ h3 {
   line-height: 1.45;
 }
 
+.platform-suite {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.platform-suite article {
+  min-height: 150px;
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdfc;
+}
+
+.platform-suite strong {
+  display: block;
+  margin-bottom: 9px;
+  color: var(--teal-dark);
+}
+
+.platform-suite p {
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
 .branch-list,
 .file-list {
   display: grid;
@@ -702,6 +728,43 @@ canvas {
   background: #fbfdfc;
 }
 
+.workbench-list,
+.automation-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.workbench-list article,
+.automation-grid article {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdfc;
+}
+
+.workbench-list strong,
+.automation-grid strong,
+.workbench-list p,
+.automation-grid p {
+  display: block;
+}
+
+.workbench-list p,
+.automation-grid p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.automation-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.automation-action {
+  width: 100%;
+  margin-top: 14px;
+}
+
 select,
 .comment-form input {
   min-height: 40px;
@@ -914,9 +977,11 @@ select,
   }
 
   .pipeline,
+  .platform-suite,
   .repo-flow,
   .ci-grid,
-  .backend-grid {
+  .backend-grid,
+  .automation-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -956,10 +1021,12 @@ select,
 
   .status-strip,
   .pipeline,
+  .platform-suite,
   .repo-flow,
   .backend-grid,
   .circuit-layout,
   .ci-grid,
+  .automation-grid,
   .builder-layout,
   .provenance,
   .comment-form {
