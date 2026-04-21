@@ -70,6 +70,42 @@ The app should make one repeatable loop feel obvious:
 That loop is the product. The quantum integrations are powerful, but they are not the
 whole company.
 
+## GitHub-Style Product Model
+
+The clearest product metaphor is **GitHub for optimization evidence**.
+
+Users should not feel like they are filling out a dashboard. They should feel like they
+are working in a durable repository where every scientific and business decision is
+versioned.
+
+Core objects:
+
+- **Q-Repo**: a repository for one optimization use case. It contains model files,
+  datasets, solver plans, run artifacts, reviews, and decision reports.
+- **Branch**: an experiment variant, such as `qaoa-sweep`, `hybrid-anneal`, or
+  `baseline-local-search`.
+- **Commit**: a change to the model, dataset, constraints, solver parameters, or report.
+- **Q-Checks**: solver runs that behave like CI checks. Classical baselines, Qiskit,
+  Braket, annealing, and future SNN adapters all report normalized status and metrics.
+- **Q-Review**: a pull-request-like review where teammates inspect baseline fairness,
+  constraint validity, reproducibility, cost, and result quality.
+- **Merge Evidence**: accepted experiment evidence becomes part of the canonical report
+  on `main`.
+
+The day-to-day user flow:
+
+1. Create a Q-Repo from a template.
+2. Add or import datasets.
+3. Commit model and constraint changes.
+4. Create a branch for an experiment variant.
+5. Run Q-Checks across selected solvers.
+6. Open a Q-Review for the evidence.
+7. Resolve comments and rerun checks.
+8. Merge evidence into the decision report.
+
+This makes Q-Platform familiar to technical teams while still being specialized for
+optimization and quantum evaluation.
+
 ## First Product Promise
 
 Before a customer spends six months on a quantum proof of concept, Q-Platform should

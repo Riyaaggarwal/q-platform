@@ -69,13 +69,16 @@ const baseRuns = [
 ];
 
 const comments = [
-  ["Riya", "Need a repeatability panel before we show this to a customer."],
-  ["Maya", "Classical baseline should include the stronger local-search variant."],
-  ["Dev", "Backend adapters are normalized enough for Qiskit and Braket next."]
+  ["Riya", "PR #14 needs repeatability checks before we merge this into the decision report."],
+  ["Maya", "Please add the stronger local-search baseline as a required check."],
+  ["Dev", "Qiskit and Braket adapters are normalized enough to compare artifacts."]
 ];
 
 const workspaces = {
   energy: {
+    ownerName: "GridLab Ventures",
+    repo: "battery-dispatch",
+    description: "Benchmark quantum-ready methods against classical dispatch baselines.",
     study: "Battery fleet dispatch",
     copy: "Testing whether quantum-inspired search improves dispatch cost under grid constraints.",
     template: "energy",
@@ -85,6 +88,9 @@ const workspaces = {
     estimate: "$4.8M"
   },
   finance: {
+    ownerName: "Northstar Quant",
+    repo: "portfolio-qubo",
+    description: "Validate QUBO portfolio allocation against risk-aware classical baselines.",
     study: "Portfolio risk allocation",
     copy: "Measuring whether QUBO formulations improve allocation quality under exposure caps.",
     template: "portfolio",
@@ -95,9 +101,31 @@ const workspaces = {
   }
 };
 
+const branches = {
+  main: {
+    commit: "a18c9f2",
+    label: "main",
+    queue: "Run required checks on main",
+    status: "Accepted evidence"
+  },
+  "qaoa-sweep": {
+    commit: "d72ab04",
+    label: "qaoa-sweep",
+    queue: "Run Qiskit parameter sweep checks",
+    status: "Review open"
+  },
+  "hybrid-anneal": {
+    commit: "f04e7c1",
+    label: "hybrid-anneal",
+    queue: "Run hybrid annealing repeatability checks",
+    status: "Changes requested"
+  }
+};
+
 let activeTemplate = "energy";
 let activeView = "workspace";
 let activeWorkspace = "energy";
+let activeBranch = "main";
 let selectedMetric = "quality";
 let selectedSolvers = new Set(baseRuns.map((run) => run.id));
 
@@ -241,7 +269,15 @@ function renderComments() {
 
 function updateStatus() {
   const data = templates[activeTemplate];
+  const workspace = workspaces[activeWorkspace];
+  const branch = branches[activeBranch];
   const evidence = Math.min(96, 54 + selectedSolvers.size * 5 + comments.length * 2);
+  document.querySelector("#repoOwner").textContent = workspace.ownerName;
+  document.querySelector("#repoName").textContent = workspace.repo;
+  document.querySelector("#repoDescription").textContent = workspace.description;
+  document.querySelector("#repoBranch").textContent = branch.label;
+  document.querySelector("#repoCommit").textContent = branch.commit;
+  document.querySelector("#branchBadge").textContent = branch.label;
   document.querySelector("#statusProblem").textContent = data.name;
   document.querySelector("#statusDataset").textContent = data.dataset;
   document.querySelector("#statusSolvers").textContent = `${selectedSolvers.size} selected`;
@@ -271,7 +307,7 @@ document.querySelectorAll(".template-card").forEach((button) => {
     button.classList.add("active");
     activeTemplate = button.dataset.template;
     document.querySelector("#queueTitle").textContent =
-      activeTemplate === "routing" ? "Hybrid route cluster sweep" : "Repeatability sweep x 20 seeds";
+      activeTemplate === "routing" ? "Run routing cluster checks" : branches[activeBranch].queue;
     render();
   });
 });
@@ -295,7 +331,24 @@ document.querySelectorAll(".workspace-choice").forEach((button) => {
     document.querySelector("#valueInput").value = workspace.value;
     document.querySelector("#riskInput").value = workspace.risk;
     document.querySelector("#valueEstimate").textContent = workspace.estimate;
-    comments.unshift(["System", `${workspace.study} workspace loaded.`]);
+    document.querySelector("#repoVisibility").textContent = "Private";
+    comments.unshift(["System", `${workspace.ownerName}/${workspace.repo} loaded.`]);
+    activeBranch = "main";
+    document.querySelectorAll(".branch-row").forEach((item) => {
+      item.classList.toggle("active", item.dataset.branch === activeBranch);
+    });
+    render();
+  });
+});
+
+document.querySelectorAll(".branch-row").forEach((button) => {
+  button.addEventListener("click", () => {
+    activeBranch = button.dataset.branch;
+    document.querySelectorAll(".branch-row").forEach((item) => item.classList.remove("active"));
+    button.classList.add("active");
+    document.querySelector("#queueTitle").textContent = branches[activeBranch].queue;
+    document.querySelector("#statusReview").textContent = branches[activeBranch].status;
+    comments.unshift(["System", `Checked out ${branches[activeBranch].label} at ${branches[activeBranch].commit}.`]);
     render();
   });
 });
@@ -362,7 +415,7 @@ document.querySelector("#commentForm").addEventListener("submit", (event) => {
 });
 
 document.querySelector("#runButton").addEventListener("click", () => {
-  document.querySelector("#statusReview").textContent = "Benchmark complete";
+  document.querySelector("#statusReview").textContent = "Checks passed";
   document.querySelector("#auditState").textContent = "New run captured with full provenance";
   document.querySelector("#backendBadge").textContent = `${selectedSolvers.size} adapters used`;
   baseRuns.forEach((run, index) => {
@@ -373,25 +426,35 @@ document.querySelector("#runButton").addEventListener("click", () => {
 });
 
 document.querySelector("#reviewButton").addEventListener("click", () => {
-  document.querySelector("#statusReview").textContent = "Review requested";
+  document.querySelector("#statusReview").textContent = "PR #14 open";
   document.querySelectorAll(".pipeline-step").forEach((item) => {
     item.classList.toggle("active", ["intake", "model", "benchmark", "review"].includes(item.dataset.step));
   });
-  comments.unshift(["System", "Review request sent to workspace reviewers."]);
+  activeBranch = "hybrid-anneal";
+  document.querySelectorAll(".branch-row").forEach((item) => {
+    item.classList.toggle("active", item.dataset.branch === activeBranch);
+  });
+  comments.unshift(["System", "Opened PR #14 from hybrid-anneal into main."]);
   render();
 });
 
 document.querySelector("#queueButton").addEventListener("click", () => {
-  document.querySelector("#queueTitle").textContent = "Sweep queued with provenance lock";
-  document.querySelector("#statusReview").textContent = "Sweep queued";
-  comments.unshift(["System", "Repeatability sweep queued for selected solvers."]);
+  document.querySelector("#queueTitle").textContent = "Checks queued with provenance lock";
+  document.querySelector("#statusReview").textContent = "Checks queued";
+  comments.unshift(["System", `Required checks queued for ${branches[activeBranch].label}.`]);
   render();
 });
 
 document.querySelector("#exportButton").addEventListener("click", () => {
-  document.querySelector("#reportBadge").textContent = "Ready to share";
-  document.querySelector("#statusReview").textContent = "Report ready";
+  activeBranch = "main";
+  document.querySelector("#reportBadge").textContent = "Merged to main";
+  document.querySelector("#statusReview").textContent = "Evidence merged";
+  document.querySelectorAll(".branch-row").forEach((item) => {
+    item.classList.toggle("active", item.dataset.branch === activeBranch);
+  });
   document.querySelectorAll(".pipeline-step").forEach((item) => item.classList.add("active"));
+  comments.unshift(["System", "Merged reviewed evidence into main and updated the decision report."]);
+  render();
 });
 
 render();

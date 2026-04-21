@@ -259,6 +259,55 @@ h3 {
   font-size: 12px;
 }
 
+.repo-header {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 10px 28px rgba(23, 32, 38, 0.08);
+}
+
+.repo-header strong {
+  display: block;
+  margin: 2px 0 4px;
+  font-size: 24px;
+}
+
+.repo-header p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.repo-owner {
+  color: var(--teal-dark);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.repo-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.repo-meta span {
+  min-height: 30px;
+  padding: 6px 10px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fbfdfc;
+  font-size: 12px;
+  font-weight: 800;
+}
+
 .pipeline {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -306,6 +355,113 @@ h3 {
 
 .pipeline-step.active span {
   background: var(--teal-dark);
+}
+
+.repo-flow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.repo-flow article {
+  min-height: 170px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdfc;
+}
+
+.repo-flow span {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 16px;
+  place-items: center;
+  color: #ffffff;
+  border-radius: 8px;
+  background: var(--teal-dark);
+  font-weight: 900;
+}
+
+.repo-flow p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.branch-list,
+.file-list {
+  display: grid;
+  gap: 10px;
+}
+
+.branch-row {
+  width: 100%;
+  min-height: 74px;
+  padding: 12px;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.branch-row.active {
+  border-color: var(--teal);
+  background: #eefafa;
+}
+
+.branch-row strong,
+.branch-row small {
+  display: block;
+}
+
+.branch-row small {
+  margin-top: 5px;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+.file-list div {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  min-height: 58px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdfc;
+}
+
+.file-status {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.file-status.modified {
+  color: #7a4f00;
+  background: #fff0c7;
+}
+
+.file-status.added {
+  color: #0b673b;
+  background: #dff5e9;
+}
+
+.file-list strong,
+.file-list small {
+  display: block;
+}
+
+.file-list small {
+  margin-top: 3px;
+  color: var(--muted);
 }
 
 .workspace-grid {
@@ -662,6 +818,7 @@ select,
   }
 
   .pipeline,
+  .repo-flow,
   .backend-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -701,11 +858,21 @@ select,
 
   .status-strip,
   .pipeline,
+  .repo-flow,
   .backend-grid,
   .builder-layout,
   .provenance,
   .comment-form {
     grid-template-columns: 1fr;
+  }
+
+  .repo-header,
+  .run-queue {
+    display: grid;
+  }
+
+  .repo-meta {
+    justify-content: flex-start;
   }
 
   .nav-list {

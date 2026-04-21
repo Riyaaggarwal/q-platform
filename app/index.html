@@ -18,11 +18,11 @@
         </div>
 
         <nav class="nav-list">
-          <button class="nav-item active" data-view="workspace">Workspace</button>
-          <button class="nav-item" data-view="model">Q-Model</button>
-          <button class="nav-item" data-view="bench">Q-Bench</button>
-          <button class="nav-item" data-view="collab">Q-Collab</button>
-          <button class="nav-item" data-view="report">Report</button>
+          <button class="nav-item active" data-view="workspace">Q-Repos</button>
+          <button class="nav-item" data-view="model">Model files</button>
+          <button class="nav-item" data-view="bench">Run checks</button>
+          <button class="nav-item" data-view="collab">Reviews</button>
+          <button class="nav-item" data-view="report">Reports</button>
         </nav>
 
         <div class="workspace-switcher" aria-label="Workspace selector">
@@ -47,22 +47,35 @@
       <main class="main">
         <header class="topbar">
           <div>
-            <p class="eyebrow">Q-Collab workspace</p>
-            <h1>Prove where quantum-ready optimization creates value.</h1>
+            <p class="eyebrow">Q-Repo / gridlab/battery-dispatch</p>
+            <h1>GitHub-style collaboration for optimization evidence.</h1>
             <p class="topbar-copy">
-              Turn a real operational problem into a versioned experiment, run strong
-              baselines beside quantum methods, and package the evidence for a decision.
+              Version the model, dataset, solver plan, run artifacts, review comments,
+              and final decision report in one reproducible experiment repository.
             </p>
           </div>
           <div class="topbar-actions">
-            <button class="ghost-button" id="reviewButton">Request review</button>
-            <button class="primary-button" id="runButton">Run benchmark</button>
+            <button class="ghost-button" id="reviewButton">Open review</button>
+            <button class="primary-button" id="runButton">Run checks</button>
           </div>
         </header>
 
+        <section class="repo-header" aria-label="Repository summary">
+          <div>
+            <span class="repo-owner" id="repoOwner">GridLab Ventures</span>
+            <strong id="repoName">battery-dispatch</strong>
+            <p id="repoDescription">Benchmark quantum-ready methods against classical dispatch baselines.</p>
+          </div>
+          <div class="repo-meta">
+            <span id="repoBranch">main</span>
+            <span id="repoCommit">a18c9f2</span>
+            <span id="repoVisibility">Private</span>
+          </div>
+        </section>
+
         <section class="status-strip" aria-label="Experiment status">
           <div>
-            <span>Problem</span>
+            <span>Model</span>
             <strong id="statusProblem">Energy dispatch</strong>
           </div>
           <div>
@@ -70,7 +83,7 @@
             <strong id="statusDataset">grid-load-v3.csv</strong>
           </div>
           <div>
-            <span>Solvers</span>
+            <span>Checks</span>
             <strong id="statusSolvers">4 selected</strong>
           </div>
           <div>
@@ -86,27 +99,85 @@
         <section class="pipeline" aria-label="Experiment pipeline">
           <button class="pipeline-step active" data-step="intake">
             <span>01</span>
-            <strong>Define use case</strong>
+            <strong>Create Q-Repo</strong>
           </button>
           <button class="pipeline-step active" data-step="model">
             <span>02</span>
-            <strong>Build model</strong>
+            <strong>Commit model</strong>
           </button>
           <button class="pipeline-step active" data-step="benchmark">
             <span>03</span>
-            <strong>Benchmark solvers</strong>
+            <strong>Run checks</strong>
           </button>
           <button class="pipeline-step" data-step="review">
             <span>04</span>
-            <strong>Collaborative review</strong>
+            <strong>Open review</strong>
           </button>
           <button class="pipeline-step" data-step="decision">
             <span>05</span>
-            <strong>Decision package</strong>
+            <strong>Merge evidence</strong>
           </button>
         </section>
 
         <div class="workspace-grid">
+          <section class="workspace-panel span-7" data-panel="workspace collab">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Repository workflow</p>
+                <h2>How a team uses Q-Platform</h2>
+              </div>
+              <span class="badge">Q-Repo</span>
+            </div>
+
+            <div class="repo-flow">
+              <article>
+                <span>1</span>
+                <strong>Create repo</strong>
+                <p>Start from a routing, portfolio, scheduling, graph, or energy template.</p>
+              </article>
+              <article>
+                <span>2</span>
+                <strong>Commit experiment</strong>
+                <p>Version model files, datasets, assumptions, parameters, and solver plan.</p>
+              </article>
+              <article>
+                <span>3</span>
+                <strong>Run checks</strong>
+                <p>Classical baselines, Qiskit, Braket, annealing, and future SNN adapters run as checks.</p>
+              </article>
+              <article>
+                <span>4</span>
+                <strong>Review evidence</strong>
+                <p>Collaborators comment on constraints, baseline fairness, repeatability, and cost.</p>
+              </article>
+            </div>
+          </section>
+
+          <section class="workspace-panel span-5" data-panel="workspace model">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Branches</p>
+                <h2>Experiment variants</h2>
+              </div>
+              <span class="badge live" id="branchBadge">main</span>
+            </div>
+
+            <div class="branch-list">
+              <button class="branch-row active" data-branch="main">
+                <strong>main</strong>
+                <small>Accepted baseline and latest decision report.</small>
+              </button>
+              <button class="branch-row" data-branch="qaoa-sweep">
+                <strong>qaoa-sweep</strong>
+                <small>Parameter sweep for Qiskit Runtime checks.</small>
+              </button>
+              <button class="branch-row" data-branch="hybrid-anneal">
+                <strong>hybrid-anneal</strong>
+                <small>Hybrid annealing branch waiting for review.</small>
+              </button>
+            </div>
+          </section>
+
           <section class="workspace-panel span-5" data-panel="workspace model">
             <div class="section-heading">
               <div>
@@ -135,6 +206,24 @@
               <span>Estimated annual value</span>
               <strong id="valueEstimate">$4.8M</strong>
               <p>Based on 2.1% dispatch improvement across the current battery fleet.</p>
+            </div>
+          </section>
+
+          <section class="workspace-panel span-7" data-panel="workspace model">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Files</p>
+                <h2>Versioned experiment contents</h2>
+              </div>
+              <span class="badge">6 changed</span>
+            </div>
+
+            <div class="file-list">
+              <div><span class="file-status modified">M</span><strong>model/objective.qmod</strong><small>Updated dispatch cost objective</small></div>
+              <div><span class="file-status added">A</span><strong>datasets/grid-load-v3.csv</strong><small>New load forecast sample</small></div>
+              <div><span class="file-status modified">M</span><strong>solvers/qiskit-runtime.yaml</strong><small>Adjusted QAOA depth and shots</small></div>
+              <div><span class="file-status added">A</span><strong>runs/hybrid-anneal-024.json</strong><small>Captured solver artifacts and metrics</small></div>
+              <div><span class="file-status modified">M</span><strong>reports/decision.md</strong><small>Evidence summary waiting for review</small></div>
             </div>
           </section>
 
@@ -173,7 +262,7 @@
             <div class="section-heading">
               <div>
                 <p class="eyebrow">Q-Bench</p>
-                <h2>Solver plan</h2>
+                <h2>Required checks</h2>
               </div>
               <span class="badge live">Ready</span>
             </div>
@@ -245,9 +334,9 @@
             <div class="run-queue">
               <div>
                 <span>Next run plan</span>
-                <strong id="queueTitle">Repeatability sweep x 20 seeds</strong>
+                <strong id="queueTitle">Run required checks on qaoa-sweep</strong>
               </div>
-              <button class="ghost-button" id="queueButton">Queue sweep</button>
+              <button class="ghost-button" id="queueButton">Queue checks</button>
             </div>
           </section>
 
@@ -287,9 +376,9 @@
             <div class="section-heading">
               <div>
                 <p class="eyebrow">Q-Collab</p>
-                <h2>Review room</h2>
+                <h2>Experiment review</h2>
               </div>
-              <span class="badge">3 reviewers</span>
+              <span class="badge">PR #14</span>
             </div>
 
             <div class="comment-list" id="commentList"></div>
@@ -304,7 +393,7 @@
             <div class="section-heading">
               <div>
                 <p class="eyebrow">Decision package</p>
-                <h2>Report draft</h2>
+                <h2>Merge report</h2>
               </div>
               <span class="badge live" id="reportBadge">Not exported</span>
             </div>
@@ -317,7 +406,7 @@
                 claiming advantage.
               </p>
             </div>
-            <button class="ghost-button full-width" id="exportButton">Mark report ready</button>
+            <button class="ghost-button full-width" id="exportButton">Merge evidence</button>
           </section>
 
           <section class="workspace-panel span-6" data-panel="report collab">

@@ -24,6 +24,44 @@ A product, research area, customer engagement, or grant effort.
 - experiments
 - reports
 
+## Q-Repo
+
+The GitHub-like product primitive. A Q-Repo can map to a project or sit under one.
+
+- id
+- workspace_id
+- name
+- owner
+- visibility
+- default_branch
+- problem_family
+- description
+- created_by
+
+## Branch
+
+An experiment variant.
+
+- id
+- repo_id
+- name
+- base_branch
+- head_commit
+- status
+
+## Commit
+
+A versioned change to model, dataset, solver plan, or report content.
+
+- id
+- repo_id
+- branch_id
+- sha
+- message
+- author
+- changed_files
+- created_at
+
 ## Dataset
 
 Versioned data used by one or more experiments.
@@ -82,6 +120,20 @@ A single solver execution.
 - logs_uri
 - artifacts_uri
 
+## Q-Check
+
+A solver run represented as a required check on a branch or review.
+
+- id
+- repo_id
+- branch_id
+- commit_sha
+- run_id
+- check_type
+- status
+- required
+- summary
+
 ## Metrics
 
 Normalized comparison layer.
@@ -102,6 +154,9 @@ Q-Collab workflow object.
 
 - id
 - experiment_id
+- repo_id
+- source_branch
+- target_branch
 - reviewer
 - status
 - comments
