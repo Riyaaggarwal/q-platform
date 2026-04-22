@@ -14,31 +14,50 @@ st.markdown(
     """
     <style>
       :root {
-        --ink: #172026;
-        --muted: #5f6f76;
-        --line: #dce5e5;
-        --paper: #f6f8f7;
-        --teal: #0c8f8f;
-        --teal-dark: #086267;
-        --plum: #6d4568;
-        --gold: #d7951d;
-        --coral: #c95538;
+        --ink: #f6fbfb;
+        --muted: #9fb2b8;
+        --line: rgba(168, 206, 211, .18);
+        --paper: #081216;
+        --panel: #101d23;
+        --panel-strong: #142a31;
+        --teal: #23c7bd;
+        --teal-dark: #5ee0d6;
+        --plum: #b98fca;
+        --gold: #f0b64b;
+        --coral: #ee785e;
       }
       .stApp {
         color: var(--ink);
-        background: var(--paper);
+        background:
+          radial-gradient(circle at 20% 0%, rgba(35, 199, 189, .16), transparent 32rem),
+          linear-gradient(180deg, #0b151a 0%, var(--paper) 45%, #071014 100%);
       }
       section[data-testid="stSidebar"] {
-        background: #18343b;
+        border-right: 1px solid var(--line);
+        background: #0a171c;
       }
       section[data-testid="stSidebar"] * {
-        color: #f8fbfb;
+        color: var(--ink);
+      }
+      .block-container {
+        padding-top: 2rem;
+      }
+      h1, h2, h3, p, label, span, div {
+        letter-spacing: 0;
+      }
+      div[data-testid="stMarkdownContainer"] p {
+        color: var(--muted);
       }
       div[data-testid="stMetric"] {
         padding: 14px 16px;
         border: 1px solid var(--line);
         border-radius: 8px;
-        background: #ffffff;
+        background: rgba(16, 29, 35, .92);
+        box-shadow: 0 14px 34px rgba(0, 0, 0, .18);
+      }
+      div[data-testid="stMetric"] label,
+      div[data-testid="stMetric"] div {
+        color: var(--ink);
       }
       .hero {
         padding: 28px 0 10px;
@@ -55,6 +74,7 @@ st.markdown(
         max-width: 980px;
         font-size: 48px;
         line-height: 1.02;
+        color: var(--ink);
       }
       .hero p {
         max-width: 840px;
@@ -66,7 +86,11 @@ st.markdown(
         padding: 18px;
         border: 1px solid var(--line);
         border-radius: 8px;
-        background: #ffffff;
+        background: linear-gradient(180deg, rgba(20, 42, 49, .94), rgba(13, 25, 31, .94));
+        box-shadow: 0 16px 40px rgba(0, 0, 0, .2);
+      }
+      .panel h3 {
+        color: var(--ink);
       }
       .small-muted {
         color: var(--muted);
@@ -78,47 +102,99 @@ st.markdown(
         padding: 5px 9px;
         border: 1px solid var(--line);
         border-radius: 999px;
-        background: #fbfdfc;
+        background: rgba(255, 255, 255, .04);
         color: var(--muted);
         font-size: 12px;
         font-weight: 800;
       }
       .badge.live {
-        border-color: rgba(12, 143, 143, .25);
-        background: rgba(12, 143, 143, .08);
+        border-color: rgba(35, 199, 189, .35);
+        background: rgba(35, 199, 189, .12);
         color: var(--teal-dark);
       }
       .badge.warn {
-        border-color: rgba(215, 149, 29, .35);
-        background: rgba(215, 149, 29, .12);
-        color: #7a4f00;
+        border-color: rgba(240, 182, 75, .38);
+        background: rgba(240, 182, 75, .13);
+        color: var(--gold);
       }
       .repo-card {
         padding: 16px;
         border-left: 4px solid var(--teal);
         border-radius: 8px;
-        background: #ffffff;
-        box-shadow: 0 12px 30px rgba(23, 32, 38, .08);
+        background: linear-gradient(135deg, rgba(20, 42, 49, .96), rgba(13, 25, 31, .96));
+        box-shadow: 0 18px 46px rgba(0, 0, 0, .24);
       }
       .repo-card h3 {
         margin: 0 0 6px;
+        color: var(--ink);
       }
       .step {
         padding: 14px;
         border: 1px solid var(--line);
         border-radius: 8px;
-        background: #ffffff;
+        background: rgba(16, 29, 35, .9);
       }
       .step strong {
         display: block;
+        color: var(--ink);
       }
       .stTabs [data-baseweb="tab-list"] {
         gap: 8px;
       }
       .stTabs [data-baseweb="tab"] {
         border-radius: 8px;
-        background: #ffffff;
+        background: rgba(16, 29, 35, .92);
         border: 1px solid var(--line);
+        color: var(--muted);
+      }
+      .stTabs [aria-selected="true"] {
+        color: var(--ink);
+        border-color: rgba(35, 199, 189, .42);
+        background: rgba(35, 199, 189, .12);
+      }
+      div[data-baseweb="select"] > div,
+      div[data-baseweb="input"] > div,
+      div[data-baseweb="base-input"],
+      textarea,
+      input {
+        color: var(--ink) !important;
+        border-color: var(--line) !important;
+        background: rgba(16, 29, 35, .96) !important;
+      }
+      div[data-baseweb="popover"],
+      div[data-baseweb="menu"] {
+        background: #101d23 !important;
+        border: 1px solid var(--line);
+      }
+      div[role="option"] {
+        color: var(--ink) !important;
+        background: #101d23 !important;
+      }
+      div[role="option"]:hover {
+        background: rgba(35, 199, 189, .16) !important;
+      }
+      button[kind="primary"],
+      .stButton > button {
+        border: 1px solid rgba(35, 199, 189, .38);
+        border-radius: 8px;
+        color: #061113;
+        background: var(--teal);
+        font-weight: 800;
+      }
+      .stButton > button:disabled {
+        color: var(--muted);
+        border-color: var(--line);
+        background: rgba(255, 255, 255, .05);
+      }
+      div[data-testid="stDataFrame"] {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      div[data-testid="stAlert"] {
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        background: rgba(16, 29, 35, .96);
       }
     </style>
     """,
