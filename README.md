@@ -18,6 +18,7 @@ The early wedge is not "generic quantum collaboration." It is a practical questi
 
 ## Repo Contents
 
+- `app.py` - Streamlit deployment entrypoint for the Q-Platform product prototype.
 - `app/` - a dependency-free web prototype for the Q-Platform product experience.
 - `docs/product-brief.md` - positioning, target users, wedge, moat, and product shape.
 - `docs/architecture.md` - system architecture and technical direction.
@@ -26,6 +27,15 @@ The early wedge is not "generic quantum collaboration." It is a practical questi
 - `scripts/serve.mjs` - tiny local static server.
 
 ## Run Locally
+
+Streamlit version:
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+Static prototype:
 
 From this repo:
 
